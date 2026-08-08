@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo Gamer Retro PS2 | Tienda de Juegos y MODS en DVD</title>
+  <meta name="description" content="Catálogo gamer de juegos para PlayStation 2 en DVD de alta calidad. Juegos clásicos, los más pedidos y los mejores MODS al mejor precio.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Toast Notifications Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Header Gamer Retro -->
+  <header>
+    <div class="container header-wrapper">
+      <div class="brand">
+        <div class="ps2-logo-badge">PS2</div>
+        <div class="brand-text">
+          <h1>Retro Zone PS2</h1>
+          <p>Juegos en DVD de Alta Calidad & MODS Exclusivos</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="admin-toggle-btn" class="btn-neon btn-admin" onclick="toggleAdminMode()">
+          🔑 Modo Admin
+        </button>
+        <button id="sound-toggle-btn" class="btn-neon btn-sound" onclick="toggleSoundMute()">
+          🔊 Audio: ON
+        </button>
+        <button class="btn-neon btn-magenta" onclick="openCartModal()">
+          🛒 Ver Lista / Cotizar <span id="cart-count-badge" class="cart-badge">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Contenido Principal -->
+  <main class="container" id="catalog-section">
+
+    <!-- Barra de Controles (Secciones, Buscador y Botón Agregar Juego 1 a 1 en Modo Admin) -->
+    <div class="controls-bar">
+      <!-- 3 Secciones Requeridas -->
+      <div class="filter-tabs">
+        <button class="tab-btn active" data-category="Todos los Juegos" onclick="selectTab('Todos los Juegos')">
+          🎮 Todos los Juegos
+        </button>
+        <button class="tab-btn" data-category="Los más pedidos" onclick="selectTab('Los más pedidos')">
+          🔥 Los más pedidos
+        </button>
+        <button class="tab-btn" data-category="MODS" onclick="selectTab('MODS')">
+          ⚡ MODS
+        </button>
+      </div>
+
+      <!-- Buscador y Botón para Agregar Juegos 1 a 1 -->
+      <div class="search-and-add">
+        <div class="search-box">
+          <span>🔍</span>
+          <input type="text" id="search-input" placeholder="Buscar juego..." autocomplete="off">
+        </div>
+        <button class="btn-neon btn-green btn-add-game-btn" onclick="openAddGameModal()">
+          ➕ Agregar Juego
+        </button>
+      </div>
+    </div>
+
+    <!-- Info del Catálogo -->
+    <div class="catalog-status">
+      <span id="catalog-count">Cargando catálogo gamer...</span>
+      <span id="admin-status-indicator" style="color: var(--cyan-glow);">📌 Vista de Cliente</span>
+    </div>
+
+    <!-- Grilla de Catálogo (4x4 en Desktop / Responsivo en Móvil) -->
+    <div id="catalog-grid" class="catalog-grid">
+      <!-- Tarjetas insertadas dinámicamente por app.js -->
+    </div>
+
+    <!-- Paginador de Páginas -->
+    <div id="pagination-wrapper" class="pagination-wrapper">
+      <!-- Controles insertados dinámicamente por app.js -->
+    </div>
+
+    <!-- Sección de Instrucciones, Entregas y Recomendaciones para tu PS2 -->
+    <section class="instructions-section">
+      <h2 class="section-title">
+        🛠️ Instrucciones, Envíos y Recomendaciones PS2
+      </h2>
+      <div class="instructions-grid">
+
+        <!-- Tarjeta 1: Calidad de Discos y Formas de Envío / Entrega -->
+        <div class="instruction-card">
+          <h3>📀 1. Calidad de Discos & Formas de Envío</h3>
+          <ul>
+            <li><strong>Calidad Garantizada:</strong> Los DVDs utilizados son 100% nuevos y de la mejor calidad del mercado para garantizar máxima compatibilidad y durabilidad.</li>
+            <li><strong>Compatibilidad:</strong> Verifica que tu consola PlayStation 2 posea chip de destraba interno (ej. Matrix Infinity, Toxic) para leer discos grabados en formato DVD-R.</li>
+            <li><strong>Envíos a Domicilio:</strong> Se realizan envíos a partir de la compra de 5 juegos en adelante.</li>
+            <li><strong>Retiro o UBER:</strong> Si compras menos de 5 juegos, se retiran en mi domicilio personal o se realizan envíos a través de UBER / servicio de mensajería a cargo del cliente.</li>
+          </ul>
+        </div>
+
+        <!-- Tarjeta 2: Mantenimiento y Limpieza de Consola -->
+        <div class="instruction-card">
+          <h3>🧹 2. Limpieza y Mantenimiento de la Consola</h3>
+          <ul>
+            <li><strong>Limpieza del Lente Óptico:</strong> Si los juegos se quedan congelados o tardan en cargar, limpia suavemente el lente láser con un hisopo de algodón levemente humedecido con Alcohol Isopropílico (al 99%). No ejerzas presión excesiva.</li>
+            <li><strong>Ventilación y Espacio Libre:</strong> Deja al menos 15 cm libres detrás de la consola para que el ventilador expulse el aire caliente. Nunca tapes las rejillas de ventilación.</li>
+            <li><strong>Posición Recomendada:</strong> Si el láser tiene desgaste por los años, colocar la consola de forma horizontal reduce el margen de error en la lectura.</li>
+            <li><strong>Cuidado del Polvo:</strong> Cubre la consola cuando no la uses para evitar que el polvo se acumule sobre el lector óptico.</li>
+          </ul>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal para Agregar Juegos (1 a 1 en Modo Admin) -->
+  <div id="add-game-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>➕ Agregar Nuevo Juego al Catálogo</h2>
+        <button class="btn-close" onclick="closeAddGameModal()">&times;</button>
+      </div>
+      <form id="add-game-form" onsubmit="saveNewGame(event); return false;">
+        <div class="form-group">
+          <label for="game-name">Nombre del Juego *</label>
+          <input type="text" id="game-name" required placeholder="Ej. Black Ops PS2 MOD">
+        </div>
+        <div class="form-group">
+          <label for="game-image">URL de la Carátula / Imagen (Internet)</label>
+          <input type="url" id="game-image" placeholder="https://ejemplo.com/caratula.jpg">
+          <small style="color: var(--text-muted); font-size: 0.8rem; margin-top: 4px; display: block;">
+            Si dejas este campo vacío, se generará una carátula retro automáticamente.
+          </small>
+        </div>
+        <div class="form-group">
+          <label for="game-category">Sección / Categoría *</label>
+          <select id="game-category" required>
+            <option value="Todos los Juegos">Todos los Juegos</option>
+            <option value="Los más pedidos">Los más pedidos</option>
+            <option value="MODS">MODS</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="game-price">Precio ($ ARS) *</label>
+          <input type="number" id="game-price" min="0" value="3000" required>
+        </div>
+        <div class="form-group">
+          <label for="game-desc">Descripción o Detalles del Juego</label>
+          <textarea id="game-desc" rows="3" placeholder="Información del juego, idioma, parches, etc."></textarea>
+        </div>
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px;">
+          <button type="button" class="btn-neon" onclick="closeAddGameModal()">Cancelar</button>
+          <button type="submit" class="btn-neon btn-green">Guardar Juego</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal para Editar Juego Existente -->
+  <div id="edit-game-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>✏️ Editar Juego del Catálogo</h2>
+        <button class="btn-close" onclick="closeEditGameModal()">&times;</button>
+      </div>
+      <form id="edit-game-form" onsubmit="saveEditedGame(event); return false;">
+        <input type="hidden" id="edit-game-id">
+        <div class="form-group">
+          <label for="edit-game-name">Nombre del Juego *</label>
+          <input type="text" id="edit-game-name" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-game-image">URL de la Carátula / Imagen</label>
+          <div style="display: flex; gap: 8px;">
+            <input type="text" id="edit-game-image" placeholder="https://ejemplo.com/caratula.jpg">
+            <button type="button" class="btn-neon btn-danger" style="padding: 6px 10px; font-size: 0.75rem;" onclick="clearEditImage()" title="Quitar imagen actual">❌ Quitar</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="edit-game-category">Sección / Categoría *</label>
+          <select id="edit-game-category" required>
+            <option value="Todos los Juegos">Todos los Juegos</option>
+            <option value="Los más pedidos">Los más pedidos</option>
+            <option value="MODS">MODS</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="edit-game-price">Precio ($ ARS) *</label>
+          <input type="number" id="edit-game-price" min="0" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-game-desc">Descripción o Detalles del Juego</label>
+          <textarea id="edit-game-desc" rows="3"></textarea>
+        </div>
+        <div style="display: flex; gap: 12px; justify-content: flex-end; margin-top: 20px;">
+          <button type="button" class="btn-neon" onclick="closeEditGameModal()">Cancelar</button>
+          <button type="submit" class="btn-neon btn-green">Actualizar Juego</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal del Cotizador / Lista de Juegos -->
+  <div id="cart-modal" class="modal-overlay">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>🛒 Mi Lista de Pedido / Cotizador</h2>
+        <button class="btn-close" onclick="closeCartModal()">&times;</button>
+      </div>
+      
+      <div id="cart-items-list" class="cart-items-list">
+        <!-- Ítems agregados por JavaScript -->
+      </div>
+
+      <div class="cart-total-box">
+        <span class="cart-total-title">Total a Pagar:</span>
+        <span id="cart-total-price" class="cart-total-amount">$0</span>
+      </div>
+
+      <div style="margin-top: 25px; display: flex; flex-direction: column; gap: 12px;">
+        <button class="btn-neon btn-green" style="width: 100%; justify-content: center; padding: 14px; font-size: 1rem;" onclick="sendWhatsAppOrder()">
+          📱 Enviar Pedido por WhatsApp (2964476309)
+        </button>
+        <button class="btn-neon" style="width: 100%; justify-content: center;" onclick="closeCartModal()">
+          Seguir Viendo Catálogo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pie de Página -->
+  <footer>
+    <div class="container">
+      <p>🎮 <strong>PS2 RETRO ZONE</strong> - Catálogo Interactivo de Juegos en DVD & MODS Exclusivos</p>
+      <p style="margin-top: 8px; font-size: 0.8rem;">
+        <button class="btn-neon" style="font-size: 0.75rem; padding: 5px 12px;" onclick="resetCatalogToDefault()">
+          🔄 Restablecer Catálogo Original
+        </button>
+      </p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="sound.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
