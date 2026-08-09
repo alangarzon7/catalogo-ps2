@@ -1,4 +1,4 @@
-// PS2 Retro Catalog Main JavaScript Application Logic (GitHub Pages Global Sync Engine)
+// PS2 Retro Catalog Main JavaScript Application Logic (Option 1: Direct GitHub API Push Enabled)
 
 const WHATSAPP_NUMBER = "5492964476309"; // Target WhatsApp (2964476309)
 const ITEMS_PER_PAGE = 16; // 4 rows x 4 columns grid on desktop
@@ -12,7 +12,6 @@ let searchQuery = "";
 let currentPage = 1;
 let cart = [];
 let adminModeActive = localStorage.getItem('ps2_admin_mode_active') === 'true';
-let hasUnpublishedChanges = false;
 
 // Default PS2 Games Catalog Initial Database ($4.000 ARS)
 const defaultGamesList = [
@@ -239,28 +238,26 @@ function showToast(message) {
 
   setTimeout(() => {
     toast.remove();
-  }, 3200);
+  }, 3500);
 }
 
-// Initialize Catalog Data (Fetches master games.json from GitHub first!)
+// Initialize Catalog Data (Fetches master games.json from GitHub Pages first!)
 async function initData() {
   let masterData = [];
 
-  // 1. Always fetch latest games.json from GitHub Pages server with cache busting
   try {
     const response = await fetch('games.json?t=' + Date.now());
     if (response.ok) {
       masterData = await response.json();
     }
   } catch (e) {
-    console.log("No se pudo cargar games.json remoto, usando fallback.");
+    console.log("Cargando datos locales por defecto...");
   }
 
   if (!Array.isArray(masterData) || masterData.length === 0) {
     masterData = [...defaultGamesList];
   }
 
-  // 2. Load catalog games
   const storedGames = localStorage.getItem(STORAGE_KEY);
   if (storedGames) {
     try {
@@ -302,6 +299,79 @@ function saveCatalogToStorage() {
   }
 }
 
+// OPTION 1: PUBLISH DIRECTLY TO GITHUB API FROM BROWSER ADMIN MODE
+async function publishToGitHub() {
+  if (!adminModeActive) return;
+
+  let token = localStorage.getItem('ps2_github_token');
+  if (!token) {
+    const inputToken = prompt("🔑 Ingrese su Personal Access Token (PAT) de GitHub:\n\n(Este token permitirá publicar automáticamente los juegos para que TODOS tus clientes los vean en GitHub Pages con 1 clic desde tu celular o PC)");
+    if (!inputToken || !inputToken.trim()) return;
+    token = inputToken.trim();
+    localStorage.setItem('ps2_github_token', token);
+  }
+
+  showToast("⏳ Publicando cambios a GitHub API...");
+
+  const repoOwner = "alangarzon7";
+  const repoName = "catalogo-ps2";
+  const filePath = "games.json";
+  const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
+
+  try {
+    // 1. Fetch current SHA of games.json
+    let sha = "";
+    const getRes = await fetch(apiUrl, {
+      headers: {
+        'Authorization': `token ${token}`,
+        'Accept': 'application/vnd.github.v3+json'
+      }
+    });
+
+    if (getRes.ok) {
+      const getData = await getRes.json();
+      sha = getData.sha;
+    }
+
+    // 2. Format JSON content
+    const jsonString = JSON.stringify(catalogGames, null, 2);
+    const base64Content = btoa(unescape(encodeURIComponent(jsonString)));
+
+    // 3. Put games.json directly to GitHub repository!
+    const putBody = {
+      message: "Update games.json via Web App Admin Mode",
+      content: base64Content,
+      branch: "main"
+    };
+    if (sha) putBody.sha = sha;
+
+    const putRes = await fetch(apiUrl, {
+      method: 'PUT',
+      headers: {
+        'Authorization': `token ${token}`,
+        'Content-Type': 'application/json',
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      body: JSON.stringify(putBody)
+    });
+
+    if (putRes.ok) {
+      showToast("🚀 ¡Publicado a GitHub con éxito! En ~30s estará visible para todos tus clientes.");
+      try { playAddCartSound(); } catch(e){}
+    } else {
+      const errData = await putRes.json();
+      if (errData.message && errData.message.includes('Bad credentials')) {
+        localStorage.removeItem('ps2_github_token');
+        alert("❌ Token de GitHub inválido. Vuelve a hacer clic en Publicar e ingresa un token válido.");
+      } else {
+        alert("❌ Error al publicar en GitHub: " + (errData.message || "Verifique credenciales"));
+      }
+    }
+  } catch (err) {
+    alert("❌ Error de conexión al publicar: " + err.message);
+  }
+}
+
 // Export current games to games.json file
 function exportCatalogJSON() {
   try { playAddCartSound(); } catch(e){}
@@ -312,7 +382,7 @@ function exportCatalogJSON() {
   document.body.appendChild(downloadAnchor);
   downloadAnchor.click();
   downloadAnchor.remove();
-  alert("☁️ Archivo 'games.json' descargado.\n\nPara que tus clientes en GitHub Pages vean los nuevos juegos y fotos, reemplaza el archivo games.json en tu carpeta o avísame por el chat para subirlo automáticamente con git push!");
+  alert("☁️ Archivo 'games.json' descargado.\n\nPara que tus clientes en GitHub Pages vean los nuevos juegos y fotos, reemplaza el archivo games.json en tu carpeta o pídemelo por el chat!");
 }
 
 // Save cart to local storage
@@ -521,7 +591,6 @@ function saveNewGame(event) {
 
   catalogGames.unshift(newGame);
   saveCatalogToStorage();
-  hasUnpublishedChanges = true;
 
   closeAddGameModal();
 
@@ -535,7 +604,7 @@ function saveNewGame(event) {
   });
 
   renderCatalog();
-  showToast(`✨ Juego "${newGame.name}" agregado. Recuerda guardar en GitHub para que tus clientes lo vean.`);
+  showToast(`✨ Juego "${newGame.name}" agregado. Presiona "☁️ Publicar a Clientes" para subir a GitHub.`);
   try { playAddCartSound(); } catch(e){}
   return false;
 }
@@ -588,7 +657,6 @@ function saveEditedGame(event) {
   game.description = newDesc;
 
   saveCatalogToStorage();
-  hasUnpublishedChanges = true;
   closeEditGameModal();
   renderCatalog();
   showToast(`✏️ Juego "${game.name}" actualizado.`);
@@ -610,7 +678,6 @@ function deleteGame(gameId) {
     saveCartToStorage();
 
     saveCatalogToStorage();
-    hasUnpublishedChanges = true;
     renderCatalog();
     showToast(`🗑️ Juego "${game.name}" eliminado.`);
   }

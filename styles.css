@@ -300,11 +300,13 @@ header {
 }
 
 /* ADMIN MODE CONTROL VISIBILITY */
-.btn-add-game-btn {
+.btn-add-game-btn,
+.admin-only-btn {
   display: none !important;
 }
 
-body.admin-mode .btn-add-game-btn {
+body.admin-mode .btn-add-game-btn,
+body.admin-mode .admin-only-btn {
   display: inline-flex !important;
 }
 
@@ -327,6 +329,13 @@ body.admin-mode .card-quick-actions {
   font-size: 0.95rem;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.admin-actions-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 /* STRICT REQUIREMENTS: 4 Rows x 4 Columns Grid = 16 Items on Desktop */

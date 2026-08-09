@@ -66,10 +66,22 @@
       </div>
     </div>
 
-    <!-- Info del Catálogo -->
+    <!-- Info del Catálogo y Barra de Publicación GitHub -->
     <div class="catalog-status">
       <span id="catalog-count">Cargando catálogo gamer...</span>
-      <span id="admin-status-indicator" style="color: var(--cyan-glow);">📌 Vista de Cliente</span>
+      <div class="admin-actions-bar">
+        <span id="admin-status-indicator" style="color: var(--cyan-glow); font-weight: bold;">📌 Vista de Cliente</span>
+        
+        <!-- Botón para Publicar Cambios Automáticamente a GitHub (Opción 1) -->
+        <button class="btn-neon admin-only-btn" style="background: rgba(0, 240, 255, 0.15); font-size: 0.75rem; padding: 6px 12px;" onclick="publishToGitHub()" title="Publica los cambios realizados a GitHub API para que todos tus clientes los vean">
+          ☁️ Publicar a Clientes (GitHub)
+        </button>
+        
+        <!-- Botón para Descargar games.json (Opción 3 Fallback) -->
+        <button class="btn-neon admin-only-btn" style="font-size: 0.75rem; padding: 6px 10px;" onclick="exportCatalogJSON()" title="Descarga games.json para reemplazar manualmente">
+          📥 Descargar JSON
+        </button>
+      </div>
     </div>
 
     <!-- Grilla de Catálogo (4x4 en Desktop / Responsivo en Móvil) -->
@@ -236,7 +248,7 @@
     <div class="container">
       <p>🎮 <strong>PS2 RETRO ZONE</strong> - Catálogo Interactivo de Juegos en DVD & MODS Exclusivos</p>
       <p style="margin-top: 8px; font-size: 0.8rem;">
-        <button class="btn-neon" style="font-size: 0.75rem; padding: 5px 12px;" onclick="resetCatalogToDefault()">
+        <button class="btn-neon admin-only-btn" style="font-size: 0.75rem; padding: 5px 12px;" onclick="resetCatalogToDefault()">
           🔄 Restablecer Catálogo Original
         </button>
       </p>
