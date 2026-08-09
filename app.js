@@ -1,8 +1,8 @@
-// PS2 Retro Catalog Main JavaScript Application Logic (Option 1: Direct GitHub API Push Enabled)
+// PS2 Retro Catalog Main JavaScript Application Logic (Option 1 & GitHub Auto Sync Ready)
 
 const WHATSAPP_NUMBER = "5492964476309"; // Target WhatsApp (2964476309)
 const ITEMS_PER_PAGE = 16; // 4 rows x 4 columns grid on desktop
-const STORAGE_KEY = 'ps2_catalog_master_v6';
+const STORAGE_KEY = 'ps2_catalog_master_v7';
 const ADMIN_PASSWORD = "040120"; // Required Password for Admin Mode
 
 // App State
@@ -13,22 +13,22 @@ let currentPage = 1;
 let cart = [];
 let adminModeActive = localStorage.getItem('ps2_admin_mode_active') === 'true';
 
-// Default PS2 Games Catalog Initial Database ($4.000 ARS)
+// Default PS2 Games Catalog Initial Database
 const defaultGamesList = [
   {
     id: "g1",
     name: "Dragon Ball Z: Budokai Tenkaichi 3 [Latino MOD]",
     category: "MODS",
-    price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co204o.jpg",
+    price: 6000,
+    image: "https://images.launchbox-app.com/76fe49ea-b771-4758-b09d-7416ffa8a5d4.png",
     description: "Versión MOD definitiva en DVD con voces en Español Latino originales (Audio Latino), más de 160 personajes."
   },
   {
     id: "g2",
     name: "Grand Theft Auto: San Andreas",
     category: "Los más pedidos",
-    price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co294h.jpg",
+    price: 6000,
+    image: "https://www.thevideogamecompany.com/cdn/shop/products/grand-theft-auto-gta-san-andreas-sony-playstation-2-ps2-710425274107-cover-art.jpg?v=1656648049&width=1267",
     description: "El rey indiscutible de PS2. Explora todo el estado de San Andreas en la piel de CJ."
   },
   {
@@ -160,12 +160,12 @@ const defaultGamesList = [
     description: "Fútbol callejero de estrellas con trucos, regates y jugadas espectaculares."
   },
   {
-    id: "g19",
-    name: "God of War I [Español Dub MOD]",
-    category: "MODS",
-    price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xa2.jpg",
-    description: "El inicio de la leyenda de Kratos totalmente doblado al español castellano."
+    "id": "g19",
+    "name": "God of War I [Español Dub MOD]",
+    "category": "MODS",
+    "price": 4000,
+    "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xa2.jpg",
+    "description": "El inicio de la leyenda de Kratos totalmente doblado al español castellano."
   },
   {
     id: "g20",
@@ -258,22 +258,8 @@ async function initData() {
     masterData = [...defaultGamesList];
   }
 
-  const storedGames = localStorage.getItem(STORAGE_KEY);
-  if (storedGames) {
-    try {
-      const localData = JSON.parse(storedGames);
-      if (Array.isArray(localData) && localData.length > 0) {
-        catalogGames = localData;
-      } else {
-        catalogGames = masterData;
-      }
-    } catch (e) {
-      catalogGames = masterData;
-    }
-  } else {
-    catalogGames = masterData;
-  }
-
+  // Force updated master json for v7 sync
+  catalogGames = masterData;
   saveCatalogToStorage();
 
   const storedCart = localStorage.getItem('ps2_user_cart');
@@ -698,7 +684,7 @@ function resetCatalogToDefault() {
     saveCatalogToStorage();
     currentPage = 1;
     renderCatalog();
-    showToast("🔄 Catálogo restablecido a valores iniciales ($4.000)");
+    showToast("🔄 Catálogo restablecido a valores iniciales");
   }
 }
 
