@@ -1,5 +1,13 @@
 [
   {
+    "id": "g_1786288558060",
+    "name": "Los Simpsons Skateboarding",
+    "image": "https://www.lukiegames.com/assets/images/PS2/ps2_simpsons_skateboarding-110214.jpg",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "The Simpsons Skateboarding es un videojuego de deportes basado en la serie animada Los Simpsons"
+  },
+  {
     "id": "g_1786288314884",
     "name": "Los Simpsons The Game",
     "image": "https://tse1.mm.bing.net/th/id/OIP.2gXYgh-bbV7ztpc01X_ypwHaKf?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
@@ -13,7 +21,7 @@
     "image": "https://archive.org/download/gh-3-c_202503/OIPfixed.jpeg",
     "category": "Todos los Juegos",
     "price": 5000,
-    "description": "Juego en DVD para PS2."
+    "description": "Guitar Hero III: Legends of Rock es un videojuego musical donde los jugadores simulan tocar la guitarra en canciones icónicas del rock, con modos de un solo jugador, multijugador y batallas de jefes."
   },
   {
     "id": "g1",
