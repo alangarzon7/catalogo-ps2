@@ -1,8 +1,8 @@
-// PS2 Retro Catalog Main JavaScript Application Logic (Password Protected Admin Mode: 040120)
+// PS2 Retro Catalog Main JavaScript Application Logic (GitHub Pages Global Sync Ready)
 
 const WHATSAPP_NUMBER = "5492964476309"; // Target WhatsApp (2964476309)
 const ITEMS_PER_PAGE = 16; // 4 rows x 4 columns grid on desktop
-const STORAGE_KEY = 'ps2_catalog_master_v3';
+const STORAGE_KEY = 'ps2_catalog_master_v4';
 const ADMIN_PASSWORD = "040120"; // Required Password for Admin Mode
 
 // App State
@@ -238,27 +238,45 @@ function showToast(message) {
 
   setTimeout(() => {
     toast.remove();
-  }, 3000);
+  }, 3200);
 }
 
-// Initialize Catalog Data
-function initData() {
+// Initialize Catalog Data (Global GitHub Pages Sync)
+async function initData() {
+  let masterData = [];
+
+  // 1. Attempt to fetch games.json from server with cache busting
+  try {
+    const response = await fetch('games.json?v=' + Date.now());
+    if (response.ok) {
+      masterData = await response.json();
+    }
+  } catch (e) {
+    console.log("Cargando catálogo por defecto...");
+  }
+
+  if (!Array.isArray(masterData) || masterData.length === 0) {
+    masterData = [...defaultGamesList];
+  }
+
+  // 2. Check local storage for admin edits
   const storedGames = localStorage.getItem(STORAGE_KEY);
   if (storedGames) {
     try {
-      catalogGames = JSON.parse(storedGames);
+      const localData = JSON.parse(storedGames);
+      if (Array.isArray(localData) && localData.length > 0) {
+        catalogGames = localData;
+      } else {
+        catalogGames = masterData;
+      }
     } catch (e) {
-      catalogGames = [...defaultGamesList];
+      catalogGames = masterData;
     }
   } else {
-    const oldStored = localStorage.getItem('ps2_catalog_master');
-    if (oldStored) {
-      try { catalogGames = JSON.parse(oldStored); } catch(e) { catalogGames = [...defaultGamesList]; }
-    } else {
-      catalogGames = [...defaultGamesList];
-    }
-    saveCatalogToStorage();
+    catalogGames = masterData;
   }
+
+  saveCatalogToStorage();
 
   const storedCart = localStorage.getItem('ps2_user_cart');
   if (storedCart) {
@@ -283,6 +301,19 @@ function saveCatalogToStorage() {
   }
 }
 
+// Export current games to games.json file
+function exportCatalogJSON() {
+  try { playAddCartSound(); } catch(e){}
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(catalogGames, null, 2));
+  const downloadAnchor = document.createElement('a');
+  downloadAnchor.setAttribute("href", dataStr);
+  downloadAnchor.setAttribute("download", "games.json");
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
+  alert("💾 'games.json' descargado.\n\nPara que tus clientes en GitHub Pages vean los nuevos juegos, reemplaza el archivo games.json en tu carpeta y haz git push!");
+}
+
 // Save cart to local storage
 function saveCartToStorage() {
   try {
@@ -291,10 +322,23 @@ function saveCartToStorage() {
   updateCartBadge();
 }
 
-// Fallback image SVG generator for broken external links
+// Universal SVG Placeholder (Compatible with GitHub Pages & Mobile Browsers)
 function getSVGPlaceholder(title) {
-  const cleanTitle = (title || 'Juego PS2').replace(/'/g, "&apos;");
-  return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="300" height="420" viewBox="0 0 300 420"><rect width="300" height="420" fill="%230b0f1a"/><rect x="10" y="10" width="280" height="400" fill="%23141a2e" stroke="%2300f0ff" stroke-width="2" rx="8"/><text x="150" y="50" fill="%2300f0ff" font-family="sans-serif" font-size="20" font-weight="bold" text-anchor="middle">PLAYSTATION 2</text><line x1="20" y1="70" x2="280" y2="70" stroke="%23ff007f" stroke-width="2"/><text x="150" y="210" fill="%23ffffff" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">${cleanTitle}</text><text x="150" y="380" fill="%2300ff88" font-family="sans-serif" font-size="14" text-anchor="middle">DVD GAME DISC</text></svg>`;
+  const cleanTitle = (title || 'Juego PS2').replace(/["'<>]/g, "");
+  const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="420" viewBox="0 0 300 420"><rect width="300" height="420" fill="#0b0f1a"/><rect x="10" y="10" width="280" height="400" fill="#141a2e" stroke="#00f0ff" stroke-width="2" rx="8"/><text x="150" y="50" fill="#00f0ff" font-family="sans-serif" font-size="20" font-weight="bold" text-anchor="middle">PLAYSTATION 2</text><line x1="20" y1="70" x2="280" y2="70" stroke="#ff007f" stroke-width="2"/><text x="150" y="210" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">${cleanTitle}</text><text x="150" y="380" fill="#00ff88" font-family="sans-serif" font-size="14" text-anchor="middle">DVD GAME DISC</text></svg>`;
+  return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
+}
+
+// Clean and validate image URL (forces https protocol for GitHub Pages compatibility)
+function sanitizeImageUrl(url, title) {
+  if (!url || typeof url !== 'string' || !url.trim()) {
+    return getSVGPlaceholder(title);
+  }
+  let cleanUrl = url.trim();
+  if (cleanUrl.startsWith('http://')) {
+    cleanUrl = cleanUrl.replace('http://', 'https://');
+  }
+  return cleanUrl;
 }
 
 // Filter games based on section tab & search query
@@ -340,16 +384,18 @@ function renderCatalog() {
     return;
   }
 
-  // Render cards with quick action buttons (Visible in Admin Mode)
+  // Render cards
   gridContainer.innerHTML = pageItems.map(game => {
     let badgeClass = 'game-badge';
     if (game.category === 'MODS') badgeClass += ' badge-mods';
     if (game.category === 'Los más pedidos') badgeClass += ' badge-pedidos';
 
+    const imgSrc = sanitizeImageUrl(game.image, game.name);
+
     return `
       <div class="game-card" onmouseenter="try{playHoverSound();}catch(e){}">
         <div class="card-image-wrapper">
-          <img src="${game.image}" alt="${game.name}" onerror="this.onerror=null; this.src='${getSVGPlaceholder(game.name)}';">
+          <img src="${imgSrc}" alt="${game.name}" onerror="this.onerror=null; this.src='${getSVGPlaceholder(game.name)}';">
           <div class="card-quick-actions">
             <button class="btn-card-action" onclick="openEditGameModal('${game.id}')" title="Editar juego">✏️</button>
             <button class="btn-card-action delete" onclick="deleteGame('${game.id}')" title="Eliminar juego">🗑️</button>
@@ -461,10 +507,12 @@ function saveNewGame(event) {
 
   if (!nameInput || !nameInput.value.trim()) return false;
 
+  const rawImage = imageInput && imageInput.value.trim() ? imageInput.value.trim() : '';
+
   const newGame = {
     id: "g_" + Date.now(),
     name: nameInput.value.trim(),
-    image: imageInput && imageInput.value.trim() ? imageInput.value.trim() : getSVGPlaceholder(nameInput.value.trim()),
+    image: sanitizeImageUrl(rawImage, nameInput.value.trim()),
     category: categorySelect ? categorySelect.value : "Todos los Juegos",
     price: priceInput ? (parseInt(priceInput.value) || 3000) : 3000,
     description: descInput ? (descInput.value.trim() || 'Juego en DVD para PS2.') : 'Juego en DVD para PS2.'
@@ -532,7 +580,7 @@ function saveEditedGame(event) {
   const newDesc = document.getElementById('edit-game-desc').value.trim();
 
   game.name = newName || game.name;
-  game.image = newImage || getSVGPlaceholder(game.name);
+  game.image = sanitizeImageUrl(newImage, game.name);
   game.category = newCat;
   game.price = newPrice;
   game.description = newDesc;
@@ -565,7 +613,7 @@ function deleteGame(gameId) {
   }
 }
 
-// Reset Catalog to initial default games (Password protected in Admin Mode)
+// Reset Catalog to initial default games (Password protected)
 function resetCatalogToDefault() {
   if (!adminModeActive) {
     const inputPass = prompt("🔑 Ingrese la contraseña de Administrador para restablecer:");
@@ -670,10 +718,11 @@ function renderCartModalContent() {
   listContainer.innerHTML = cart.map(item => {
     const itemTotal = item.price * item.quantity;
     totalSum += itemTotal;
+    const imgSrc = sanitizeImageUrl(item.image, item.name);
 
     return `
       <div class="cart-item">
-        <img class="cart-item-img" src="${item.image}" alt="${item.name}" onerror="this.onerror=null; this.src='${getSVGPlaceholder(item.name)}';">
+        <img class="cart-item-img" src="${imgSrc}" alt="${item.name}" onerror="this.onerror=null; this.src='${getSVGPlaceholder(item.name)}';">
         <div class="cart-item-info">
           <div class="cart-item-title">${item.name}</div>
           <div class="cart-item-price">$${item.price.toLocaleString('es-AR')} x ${item.quantity} = $${itemTotal.toLocaleString('es-AR')}</div>

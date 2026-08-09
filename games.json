@@ -5,7 +5,7 @@
     "category": "MODS",
     "price": 3500,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co204o.jpg",
-    "description": "Versión MOD definitiva con voces en Español Latino originales (Audio Latino), más de 160 personajes desbloqueados."
+    "description": "Versión MOD definitiva en DVD con voces en Español Latino originales (Audio Latino), más de 160 personajes."
   },
   {
     "id": "g2",
@@ -74,10 +74,10 @@
   {
     "id": "g10",
     "name": "Silent Hill 2",
-    "category": "Todos los Juegos",
-    "price": 3000,
-    "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v69.jpg",
-    "description": "La máxima obra maestra del survival horror psicológico en una brumosa ciudad."
+    category: "Todos los Juegos",
+    price: 3000,
+    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v69.jpg",
+    description: "La máxima obra maestra del survival horror psicológico en una brumosa ciudad."
   },
   {
     "id": "g11",
@@ -85,7 +85,7 @@
     "category": "Los más pedidos",
     "price": 3000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2240.jpg",
-    "description": "Carreras alocadas con Crash Bandicoot y sus amigos para salvar la Tierra del emperador Velo."
+    description: "Carreras alocadas con Crash Bandicoot y sus amigos para salvar la Tierra del emperador Velo."
   },
   {
     "id": "g12",
@@ -93,7 +93,7 @@
     "category": "Los más pedidos",
     "price": 3500,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2529.jpg",
-    "description": "Peleas callejeras épicas entre raperos legendarios de Nueva York."
+    description: "Peleas callejeras épicas entre raperos legendarios de Nueva York."
   },
   {
     "id": "g13",
@@ -101,7 +101,7 @@
     "category": "Todos los Juegos",
     "price": 3000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7h.jpg",
-    "description": "El shooter en primera persona con la mejor calidad gráfica y explosiones de la consola."
+    description: "El shooter en primera persona con la mejor calidad gráfica y explosiones de la consola."
   },
   {
     "id": "g14",
@@ -109,7 +109,7 @@
     "category": "Todos los Juegos",
     "price": 3000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wfa.jpg",
-    "description": "Supervivencia y sigilo en la jungla soviética durante la Guerra Fría."
+    description: "Supervivencia y sigilo en la jungla soviética durante la Guerra Fría."
   },
   {
     "id": "g15",
@@ -117,13 +117,13 @@
     "category": "Los más pedidos",
     "price": 3000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2562.jpg",
-    "description": "Aventura de acción cooperativa con Liu Kang y Kung Lao derrotando hordas de Outworld."
+    description: "Aventura de acción cooperativa con Liu Kang y Kung Lao derrotando hordas de Outworld."
   },
   {
     "id": "g16",
     "name": "GTA Argentina MOD (Barrio Fino)",
     "category": "MODS",
-    "price": 3500,
+    "price: 3500,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co294h.jpg",
     "description": "MOD argentino de GTA con colectivos, autos locales, música cumbia y graffitis autóctonos."
   },
@@ -141,7 +141,7 @@
     "category": "Los más pedidos",
     "price": 3000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2044.jpg",
-    "description": "Fútbol callejero de estrellas con trucos, regates y jugadas espectaculares."
+    "description: "Fútbol callejero de estrellas con trucos, regates y jugadas espectaculares."
   },
   {
     "id": "g19",
