@@ -1,8 +1,8 @@
-// PS2 Retro Catalog Main JavaScript Application Logic (Cart Text Updates & Payment Warning)
+// PS2 Retro Catalog Main JavaScript Application Logic (v8 Sync Updated)
 
 const WHATSAPP_NUMBER = "5492964476309"; // Target WhatsApp (2964476309)
 const ITEMS_PER_PAGE = 16; // 4 rows x 4 columns grid on desktop
-const STORAGE_KEY = 'ps2_catalog_master_v7';
+const STORAGE_KEY = 'ps2_catalog_master_v8';
 const ADMIN_PASSWORD = "040120"; // Required Password for Admin Mode
 
 // App State
@@ -35,33 +35,25 @@ const defaultGamesList = [
     id: "g3",
     name: "God of War II",
     category: "Los más pedidos",
-    price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xal.jpg",
+    price: 5000,
+    image: "https://i5.walmartimages.com/asr/3ac8e0b5-76d1-4995-9570-d431696221eb_1.7ac304ae3667075f6348a7a065044d54.jpeg",
     description: "Kratos desafía a los Dioses del Olimpo en una épica aventura de acción y combate sangriento."
   },
   {
     id: "g4",
     name: "Resident Evil 4",
     category: "Los más pedidos",
-    price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co249x.jpg",
+    price: 6000,
+    image: "https://cdn.mobygames.com/covers/4480917-resident-evil-4-playstation-2-front-cover.jpg",
     description: "Leon S. Kennedy debe rescatar a la hija del presidente en un pueblo hostil de Europa."
   },
   {
     id: "g5",
-    name: "The Simpsons Hit & Run [Latino MOD]",
+    name: "The Simpsons Hit & Run LATINO",
     category: "MODS",
-    price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co21z9.jpg",
+    price: 6000,
+    image: "https://www.lukiegames.com/assets/images/PS2/ps2_simpsons_hit_and_run-110214.jpg",
     description: "La obra maestra de Los Simpson doblada al Español Latino por los actores de voz originales."
-  },
-  {
-    id: "g6",
-    name: "PES 2024 Liga Argentina & Sudamericana MOD",
-    category: "MODS",
-    price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1vce.jpg",
-    description: "Parche actualizado con los equipos de la Liga Argentina, camisetas 2024 y relatos sudamericanos."
   },
   {
     id: "g7",
@@ -258,22 +250,7 @@ async function initData() {
     masterData = [...defaultGamesList];
   }
 
-  const storedGames = localStorage.getItem(STORAGE_KEY);
-  if (storedGames) {
-    try {
-      const localData = JSON.parse(storedGames);
-      if (Array.isArray(localData) && localData.length > 0) {
-        catalogGames = localData;
-      } else {
-        catalogGames = masterData;
-      }
-    } catch (e) {
-      catalogGames = masterData;
-    }
-  } else {
-    catalogGames = masterData;
-  }
-
+  catalogGames = masterData;
   saveCatalogToStorage();
 
   const storedCart = localStorage.getItem('ps2_user_cart');
@@ -604,7 +581,7 @@ function saveNewGame(event) {
   });
 
   renderCatalog();
-  showToast(`✨ Juego "${newGame.name}" agregado al carrito.`);
+  showToast(`✨ Juego "${newGame.name}" agregado. Presiona "☁️ Publicar a Clientes" para subir a GitHub.`);
   try { playAddCartSound(); } catch(e){}
   return false;
 }
