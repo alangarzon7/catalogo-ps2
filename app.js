@@ -1,8 +1,8 @@
-// PS2 Retro Catalog Main JavaScript Application Logic (GitHub Pages Global Sync Ready)
+// PS2 Retro Catalog Main JavaScript Application Logic (Global $4.000 Price Update)
 
 const WHATSAPP_NUMBER = "5492964476309"; // Target WhatsApp (2964476309)
 const ITEMS_PER_PAGE = 16; // 4 rows x 4 columns grid on desktop
-const STORAGE_KEY = 'ps2_catalog_master_v4';
+const STORAGE_KEY = 'ps2_catalog_master_v5';
 const ADMIN_PASSWORD = "040120"; // Required Password for Admin Mode
 
 // App State
@@ -13,13 +13,13 @@ let currentPage = 1;
 let cart = [];
 let adminModeActive = localStorage.getItem('ps2_admin_mode_active') === 'true';
 
-// Default PS2 Games Catalog Initial Database
+// Default PS2 Games Catalog Initial Database ($4.000 ARS)
 const defaultGamesList = [
   {
     id: "g1",
     name: "Dragon Ball Z: Budokai Tenkaichi 3 [Latino MOD]",
     category: "MODS",
-    price: 3500,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co204o.jpg",
     description: "Versión MOD definitiva en DVD con voces en Español Latino originales (Audio Latino), más de 160 personajes."
   },
@@ -27,7 +27,7 @@ const defaultGamesList = [
     id: "g2",
     name: "Grand Theft Auto: San Andreas",
     category: "Los más pedidos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co294h.jpg",
     description: "El rey indiscutible de PS2. Explora todo el estado de San Andreas en la piel de CJ."
   },
@@ -35,7 +35,7 @@ const defaultGamesList = [
     id: "g3",
     name: "God of War II",
     category: "Los más pedidos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xal.jpg",
     description: "Kratos desafía a los Dioses del Olimpo en una épica aventura de acción y combate sangriento."
   },
@@ -43,7 +43,7 @@ const defaultGamesList = [
     id: "g4",
     name: "Resident Evil 4",
     category: "Los más pedidos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co249x.jpg",
     description: "Leon S. Kennedy debe rescatar a la hija del presidente en un pueblo hostil de Europa."
   },
@@ -51,7 +51,7 @@ const defaultGamesList = [
     id: "g5",
     name: "The Simpsons Hit & Run [Latino MOD]",
     category: "MODS",
-    price: 3500,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co21z9.jpg",
     description: "La obra maestra de Los Simpson doblada al Español Latino por los actores de voz originales."
   },
@@ -59,7 +59,7 @@ const defaultGamesList = [
     id: "g6",
     name: "PES 2024 Liga Argentina & Sudamericana MOD",
     category: "MODS",
-    price: 3500,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1vce.jpg",
     description: "Parche actualizado con los equipos de la Liga Argentina, camisetas 2024 y relatos sudamericanos."
   },
@@ -67,7 +67,7 @@ const defaultGamesList = [
     id: "g7",
     name: "Need for Speed: Most Wanted",
     category: "Los más pedidos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2384.jpg",
     description: "Carreras callejeras ilegales, persecuciones policiales extremas y la codiciada Blacklist."
   },
@@ -75,7 +75,7 @@ const defaultGamesList = [
     id: "g8",
     name: "Shadow of the Colossus",
     category: "Los más pedidos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v91.jpg",
     description: "Enfrenta a 16 gigantescos colosos en una tierra prohibida para devolver la vida a tu amada."
   },
@@ -83,7 +83,7 @@ const defaultGamesList = [
     id: "g9",
     name: "Guitar Hero II",
     category: "Todos los Juegos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4n.jpg",
     description: "Demuestra tus habilidades de rockstar con los mejores clásicos del rock y metal mundial."
   },
@@ -91,7 +91,7 @@ const defaultGamesList = [
     id: "g10",
     name: "Silent Hill 2",
     category: "Todos los Juegos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v69.jpg",
     description: "La máxima obra maestra del survival horror psicológico en una brumosa ciudad."
   },
@@ -99,7 +99,7 @@ const defaultGamesList = [
     id: "g11",
     name: "Crash Nitro Kart",
     category: "Los más pedidos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2240.jpg",
     description: "Carreras alocadas con Crash Bandicoot y sus amigos para salvar la Tierra del emperador Velo."
   },
@@ -107,7 +107,7 @@ const defaultGamesList = [
     id: "g12",
     name: "Def Jam: Fight for NY",
     category: "Los más pedidos",
-    price: 3500,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2529.jpg",
     description: "Peleas callejeras épicas entre raperos legendarios de Nueva York."
   },
@@ -115,7 +115,7 @@ const defaultGamesList = [
     id: "g13",
     name: "BLACK",
     category: "Todos los Juegos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7h.jpg",
     description: "El shooter en primera persona con la mejor calidad gráfica y explosiones de la consola."
   },
@@ -123,7 +123,7 @@ const defaultGamesList = [
     id: "g14",
     name: "Metal Gear Solid 3: Snake Eater",
     category: "Todos los Juegos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wfa.jpg",
     description: "Supervivencia y sigilo en la jungla soviética durante la Guerra Fría."
   },
@@ -131,7 +131,7 @@ const defaultGamesList = [
     id: "g15",
     name: "Mortal Kombat: Shaolin Monks",
     category: "Los más pedidos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2562.jpg",
     description: "Aventura de acción cooperativa con Liu Kang y Kung Lao derrotando hordas de Outworld."
   },
@@ -139,7 +139,7 @@ const defaultGamesList = [
     id: "g16",
     name: "GTA Argentina MOD (Barrio Fino)",
     category: "MODS",
-    price: 3500,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co294h.jpg",
     description: "MOD argentino de GTA con colectivos, autos locales, música cumbia y graffitis autóctonos."
   },
@@ -147,7 +147,7 @@ const defaultGamesList = [
     id: "g17",
     name: "Bully (Canis Canem Edit)",
     category: "Todos los Juegos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1vcf.jpg",
     description: "Encarna a Jimmy Hopkins para sobrevivir a la escuela preparatoria Bullworth Academy."
   },
@@ -155,7 +155,7 @@ const defaultGamesList = [
     id: "g18",
     name: "FIFA Street 2",
     category: "Los más pedidos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2044.jpg",
     description: "Fútbol callejero de estrellas con trucos, regates y jugadas espectaculares."
   },
@@ -163,7 +163,7 @@ const defaultGamesList = [
     id: "g19",
     name: "God of War I [Español Dub MOD]",
     category: "MODS",
-    price: 3500,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xa2.jpg",
     description: "El inicio de la leyenda de Kratos totalmente doblado al español castellano."
   },
@@ -171,7 +171,7 @@ const defaultGamesList = [
     id: "g20",
     name: "Need for Speed: Underground 2",
     category: "Los más pedidos",
-    price: 3000,
+    price: 4000,
     image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2385.jpg",
     description: "Tuning extremo y libertad total para conducir por la ciudad nocturna de Bayview."
   }
@@ -241,11 +241,11 @@ function showToast(message) {
   }, 3200);
 }
 
-// Initialize Catalog Data (Global GitHub Pages Sync)
+// Initialize Catalog Data
 async function initData() {
   let masterData = [];
 
-  // 1. Attempt to fetch games.json from server with cache busting
+  // 1. Fetch games.json with cache busting
   try {
     const response = await fetch('games.json?v=' + Date.now());
     if (response.ok) {
@@ -301,19 +301,6 @@ function saveCatalogToStorage() {
   }
 }
 
-// Export current games to games.json file
-function exportCatalogJSON() {
-  try { playAddCartSound(); } catch(e){}
-  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(catalogGames, null, 2));
-  const downloadAnchor = document.createElement('a');
-  downloadAnchor.setAttribute("href", dataStr);
-  downloadAnchor.setAttribute("download", "games.json");
-  document.body.appendChild(downloadAnchor);
-  downloadAnchor.click();
-  downloadAnchor.remove();
-  alert("💾 'games.json' descargado.\n\nPara que tus clientes en GitHub Pages vean los nuevos juegos, reemplaza el archivo games.json en tu carpeta y haz git push!");
-}
-
 // Save cart to local storage
 function saveCartToStorage() {
   try {
@@ -322,14 +309,14 @@ function saveCartToStorage() {
   updateCartBadge();
 }
 
-// Universal SVG Placeholder (Compatible with GitHub Pages & Mobile Browsers)
+// Universal SVG Placeholder
 function getSVGPlaceholder(title) {
   const cleanTitle = (title || 'Juego PS2').replace(/["'<>]/g, "");
   const svgString = `<svg xmlns="http://www.w3.org/2000/svg" width="300" height="420" viewBox="0 0 300 420"><rect width="300" height="420" fill="#0b0f1a"/><rect x="10" y="10" width="280" height="400" fill="#141a2e" stroke="#00f0ff" stroke-width="2" rx="8"/><text x="150" y="50" fill="#00f0ff" font-family="sans-serif" font-size="20" font-weight="bold" text-anchor="middle">PLAYSTATION 2</text><line x1="20" y1="70" x2="280" y2="70" stroke="#ff007f" stroke-width="2"/><text x="150" y="210" fill="#ffffff" font-family="sans-serif" font-size="16" font-weight="bold" text-anchor="middle">${cleanTitle}</text><text x="150" y="380" fill="#00ff88" font-family="sans-serif" font-size="14" text-anchor="middle">DVD GAME DISC</text></svg>`;
   return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgString);
 }
 
-// Clean and validate image URL (forces https protocol for GitHub Pages compatibility)
+// Clean and validate image URL
 function sanitizeImageUrl(url, title) {
   if (!url || typeof url !== 'string' || !url.trim()) {
     return getSVGPlaceholder(title);
@@ -406,7 +393,7 @@ function renderCatalog() {
           <h3 class="game-title" title="${game.name}">${game.name}</h3>
           <p class="game-desc">${game.description || 'Juego en formato DVD para consola Playstation 2.'}</p>
           <div class="card-footer">
-            <span class="game-price">$${(game.price || 3000).toLocaleString('es-AR')}</span>
+            <span class="game-price">$${(game.price || 4000).toLocaleString('es-AR')}</span>
             <button class="btn-add-quote" onclick="addToCart('${game.id}')">
                Cotizar
             </button>
@@ -514,7 +501,7 @@ function saveNewGame(event) {
     name: nameInput.value.trim(),
     image: sanitizeImageUrl(rawImage, nameInput.value.trim()),
     category: categorySelect ? categorySelect.value : "Todos los Juegos",
-    price: priceInput ? (parseInt(priceInput.value) || 3000) : 3000,
+    price: priceInput ? (parseInt(priceInput.value) || 4000) : 4000,
     description: descInput ? (descInput.value.trim() || 'Juego en DVD para PS2.') : 'Juego en DVD para PS2.'
   };
 
@@ -533,7 +520,7 @@ function saveNewGame(event) {
   });
 
   renderCatalog();
-  showToast(`✨ Juego "${newGame.name}" agregado con éxito`);
+  showToast(`✨ Juego "${newGame.name}" agregado con éxito ($4.000)`);
   try { playAddCartSound(); } catch(e){}
   return false;
 }
@@ -549,7 +536,7 @@ function openEditGameModal(gameId) {
   document.getElementById('edit-game-name').value = game.name;
   document.getElementById('edit-game-image').value = game.image.startsWith('data:image/svg+xml') ? '' : game.image;
   document.getElementById('edit-game-category').value = game.category;
-  document.getElementById('edit-game-price').value = game.price;
+  document.getElementById('edit-game-price').value = game.price || 4000;
   document.getElementById('edit-game-desc').value = game.description || '';
 
   const modal = document.getElementById('edit-game-modal');
@@ -576,7 +563,7 @@ function saveEditedGame(event) {
   const newName = document.getElementById('edit-game-name').value.trim();
   const newImage = document.getElementById('edit-game-image').value.trim();
   const newCat = document.getElementById('edit-game-category').value;
-  const newPrice = parseInt(document.getElementById('edit-game-price').value) || 3000;
+  const newPrice = parseInt(document.getElementById('edit-game-price').value) || 4000;
   const newDesc = document.getElementById('edit-game-desc').value.trim();
 
   game.name = newName || game.name;
@@ -628,7 +615,7 @@ function resetCatalogToDefault() {
     saveCatalogToStorage();
     currentPage = 1;
     renderCatalog();
-    showToast("🔄 Catálogo restablecido a valores iniciales");
+    showToast("🔄 Catálogo restablecido a valores iniciales ($4.000)");
   }
 }
 
@@ -645,7 +632,7 @@ function addToCart(gameId) {
     cart.push({
       id: game.id,
       name: game.name,
-      price: game.price,
+      price: game.price || 4000,
       image: game.image,
       quantity: 1
     });

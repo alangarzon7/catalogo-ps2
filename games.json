@@ -3,7 +3,7 @@
     "id": "g1",
     "name": "Dragon Ball Z: Budokai Tenkaichi 3 [Latino MOD]",
     "category": "MODS",
-    "price": 3500,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co204o.jpg",
     "description": "Versión MOD definitiva en DVD con voces en Español Latino originales (Audio Latino), más de 160 personajes."
   },
@@ -11,7 +11,7 @@
     "id": "g2",
     "name": "Grand Theft Auto: San Andreas",
     "category": "Los más pedidos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co294h.jpg",
     "description": "El rey indiscutible de PS2. Explora todo el estado de San Andreas en la piel de CJ."
   },
@@ -19,7 +19,7 @@
     "id": "g3",
     "name": "God of War II",
     "category": "Los más pedidos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xal.jpg",
     "description": "Kratos desafía a los Dioses del Olimpo en una épica aventura de acción y combate sangriento."
   },
@@ -27,7 +27,7 @@
     "id": "g4",
     "name": "Resident Evil 4",
     "category": "Los más pedidos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co249x.jpg",
     "description": "Leon S. Kennedy debe rescatar a la hija del presidente en un pueblo hostil de Europa."
   },
@@ -35,7 +35,7 @@
     "id": "g5",
     "name": "The Simpsons Hit & Run [Latino MOD]",
     "category": "MODS",
-    "price": 3500,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co21z9.jpg",
     "description": "La obra maestra de Los Simpson doblada al Español Latino por los actores de voz originales."
   },
@@ -43,7 +43,7 @@
     "id": "g6",
     "name": "PES 2024 Liga Argentina & Sudamericana MOD",
     "category": "MODS",
-    "price": 3500,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1vce.jpg",
     "description": "Parche actualizado con los equipos de la Liga Argentina, camisetas 2024 y relatos sudamericanos."
   },
@@ -51,7 +51,7 @@
     "id": "g7",
     "name": "Need for Speed: Most Wanted",
     "category": "Los más pedidos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2384.jpg",
     "description": "Carreras callejeras ilegales, persecuciones policiales extremas y la codiciada Blacklist."
   },
@@ -59,7 +59,7 @@
     "id": "g8",
     "name": "Shadow of the Colossus",
     "category": "Los más pedidos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v91.jpg",
     "description": "Enfrenta a 16 gigantescos colosos en una tierra prohibida para devolver la vida a tu amada."
   },
@@ -67,63 +67,63 @@
     "id": "g9",
     "name": "Guitar Hero II",
     "category": "Todos los Juegos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4n.jpg",
     "description": "Demuestra tus habilidades de rockstar con los mejores clásicos del rock y metal mundial."
   },
   {
     "id": "g10",
     "name": "Silent Hill 2",
-    category: "Todos los Juegos",
-    price: 3000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v69.jpg",
-    description: "La máxima obra maestra del survival horror psicológico en una brumosa ciudad."
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v69.jpg",
+    "description": "La máxima obra maestra del survival horror psicológico en una brumosa ciudad."
   },
   {
     "id": "g11",
     "name": "Crash Nitro Kart",
     "category": "Los más pedidos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2240.jpg",
-    description: "Carreras alocadas con Crash Bandicoot y sus amigos para salvar la Tierra del emperador Velo."
+    "description": "Carreras alocadas con Crash Bandicoot y sus amigos para salvar la Tierra del emperador Velo."
   },
   {
     "id": "g12",
     "name": "Def Jam: Fight for NY",
     "category": "Los más pedidos",
-    "price": 3500,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2529.jpg",
-    description: "Peleas callejeras épicas entre raperos legendarios de Nueva York."
+    "description": "Peleas callejeras épicas entre raperos legendarios de Nueva York."
   },
   {
     "id": "g13",
     "name": "BLACK",
     "category": "Todos los Juegos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7h.jpg",
-    description: "El shooter en primera persona con la mejor calidad gráfica y explosiones de la consola."
+    "description": "El shooter en primera persona con la mejor calidad gráfica y explosiones de la consola."
   },
   {
     "id": "g14",
     "name": "Metal Gear Solid 3: Snake Eater",
     "category": "Todos los Juegos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wfa.jpg",
-    description: "Supervivencia y sigilo en la jungla soviética durante la Guerra Fría."
+    "description": "Supervivencia y sigilo en la jungla soviética durante la Guerra Fría."
   },
   {
     "id": "g15",
     "name": "Mortal Kombat: Shaolin Monks",
     "category": "Los más pedidos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2562.jpg",
-    description: "Aventura de acción cooperativa con Liu Kang y Kung Lao derrotando hordas de Outworld."
+    "description": "Aventura de acción cooperativa con Liu Kang y Kung Lao derrotando hordas de Outworld."
   },
   {
     "id": "g16",
     "name": "GTA Argentina MOD (Barrio Fino)",
     "category": "MODS",
-    "price: 3500,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co294h.jpg",
     "description": "MOD argentino de GTA con colectivos, autos locales, música cumbia y graffitis autóctonos."
   },
@@ -131,7 +131,7 @@
     "id": "g17",
     "name": "Bully (Canis Canem Edit)",
     "category": "Todos los Juegos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1vcf.jpg",
     "description": "Encarna a Jimmy Hopkins para sobrevivir a la escuela preparatoria Bullworth Academy."
   },
@@ -139,23 +139,23 @@
     "id": "g18",
     "name": "FIFA Street 2",
     "category": "Los más pedidos",
-    "price": 3000,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2044.jpg",
-    "description: "Fútbol callejero de estrellas con trucos, regates y jugadas espectaculares."
+    "description": "Fútbol callejero de estrellas con trucos, regates y jugadas espectaculares."
   },
   {
     "id": "g19",
     "name": "God of War I [Español Dub MOD]",
     "category": "MODS",
-    "price": 3500,
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xa2.jpg",
     "description": "El inicio de la leyenda de Kratos totalmente doblado al español castellano."
   },
   {
     "id": "g20",
     "name": "Need for Speed: Underground 2",
-    "category": "Los más pedidos",
-    "price": 3000,
+    category: "Los más pedidos",
+    "price": 4000,
     "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co2385.jpg",
     "description": "Tuning extremo y libertad total para conducir por la ciudad nocturna de Bayview."
   }
