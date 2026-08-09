@@ -1,8 +1,8 @@
-// PS2 Retro Catalog Main JavaScript Application Logic (v8 Sync Updated)
+// PS2 Retro Catalog Main JavaScript Application Logic (v9 Sync Updated)
 
 const WHATSAPP_NUMBER = "5492964476309"; // Target WhatsApp (2964476309)
 const ITEMS_PER_PAGE = 16; // 4 rows x 4 columns grid on desktop
-const STORAGE_KEY = 'ps2_catalog_master_v8';
+const STORAGE_KEY = 'ps2_catalog_master_v9';
 const ADMIN_PASSWORD = "040120"; // Required Password for Admin Mode
 
 // App State
@@ -15,6 +15,14 @@ let adminModeActive = localStorage.getItem('ps2_admin_mode_active') === 'true';
 
 // Default PS2 Games Catalog Initial Database
 const defaultGamesList = [
+  {
+    id: "g_1786287279225",
+    name: "Guitar Hero III",
+    image: "https://archive.org/download/gh-3-c_202503/OIPfixed.jpeg",
+    category: "Todos los Juegos",
+    price: 5000,
+    description: "Juego en DVD para PS2."
+  },
   {
     id: "g1",
     name: "Dragon Ball Z: Budokai Tenkaichi 3 [Latino MOD]",
@@ -58,17 +66,17 @@ const defaultGamesList = [
   {
     id: "g7",
     name: "Need for Speed: Most Wanted",
-    category: "Los más pedidos",
+    category: "Todos los Juegos",
     price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2384.jpg",
+    image: "https://tse1.mm.bing.net/th/id/OIP.gDP7QBdqR9D0_GP68jQcagHaKG?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Carreras callejeras ilegales, persecuciones policiales extremas y la codiciada Blacklist."
   },
   {
     id: "g8",
     name: "Shadow of the Colossus",
     category: "Los más pedidos",
-    price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v91.jpg",
+    price: 5000,
+    image: "https://tse4.mm.bing.net/th/id/OIP.MZpKo4Yu9kX0AW1ZeJ7t8AHaJ-?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Enfrenta a 16 gigantescos colosos en una tierra prohibida para devolver la vida a tu amada."
   },
   {
@@ -76,15 +84,15 @@ const defaultGamesList = [
     name: "Guitar Hero II",
     category: "Todos los Juegos",
     price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x4n.jpg",
+    image: "https://www.lukiegames.com/assets/images/PS2/ps2_guitar_hero_ii-110214.jpg",
     description: "Demuestra tus habilidades de rockstar con los mejores clásicos del rock y metal mundial."
   },
   {
     id: "g10",
     name: "Silent Hill 2",
-    category: "Todos los Juegos",
+    category: "Los más pedidos",
     price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1v69.jpg",
+    image: "https://th.bing.com/th/id/R.9d3a32ebc4cb686f55d837c2bd2b85e4?rik=b%2bE77p7SBpyndw&riu=http%3a%2f%2fwww.retroplace.com%2fpics%2fps2%2fpackshots%2f81203--silent-hill-2.png&ehk=shaPfv%2b6K68AKRnQSJqdM4TVvM3xEyHoVRPUoNvFxNY%3d&risl=&pid=ImgRaw&r=0",
     description: "La máxima obra maestra del survival horror psicológico en una brumosa ciudad."
   },
   {
@@ -92,15 +100,15 @@ const defaultGamesList = [
     name: "Crash Nitro Kart",
     category: "Los más pedidos",
     price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2240.jpg",
+    image: "https://tse1.mm.bing.net/th/id/OIP.tnqhCcYAXBJp6A83ZV2MuQHaKl?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Carreras alocadas con Crash Bandicoot y sus amigos para salvar la Tierra del emperador Velo."
   },
   {
     id: "g12",
     name: "Def Jam: Fight for NY",
     category: "Los más pedidos",
-    price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2529.jpg",
+    price: 5000,
+    image: "https://tse3.mm.bing.net/th/id/OIP.NknVwnU8rsaHJySt-U2URwHaMu?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Peleas callejeras épicas entre raperos legendarios de Nueva York."
   },
   {
@@ -108,7 +116,7 @@ const defaultGamesList = [
     name: "BLACK",
     category: "Todos los Juegos",
     price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1x7h.jpg",
+    image: "https://tse1.mm.bing.net/th/id/OIP.qhT5OCK-ve0ydTKwy0NZ3wHaKU?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "El shooter en primera persona con la mejor calidad gráfica y explosiones de la consola."
   },
   {
@@ -116,7 +124,7 @@ const defaultGamesList = [
     name: "Metal Gear Solid 3: Snake Eater",
     category: "Todos los Juegos",
     price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1wfa.jpg",
+    image: "https://tse2.mm.bing.net/th/id/OIP.8GPNdqWS3Hy1LdkUnOWGNwHaKh?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Supervivencia y sigilo en la jungla soviética durante la Guerra Fría."
   },
   {
@@ -124,7 +132,7 @@ const defaultGamesList = [
     name: "Mortal Kombat: Shaolin Monks",
     category: "Los más pedidos",
     price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2562.jpg",
+    image: "https://tse2.mm.bing.net/th/id/OIP.acT-zLF5YYPS2jKTeph7TwHaKn?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Aventura de acción cooperativa con Liu Kang y Kung Lao derrotando hordas de Outworld."
   },
   {
@@ -132,15 +140,15 @@ const defaultGamesList = [
     name: "GTA Argentina MOD (Barrio Fino)",
     category: "MODS",
     price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co294h.jpg",
+    image: "https://tse2.mm.bing.net/th/id/OIP._E3fSnxt9a4INC3I8Ac2ogHaE9?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "MOD argentino de GTA con colectivos, autos locales, música cumbia y graffitis autóctonos."
   },
   {
     id: "g17",
-    name: "Bully (Canis Canem Edit)",
+    name: "Bully",
     category: "Todos los Juegos",
-    price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1vcf.jpg",
+    price: 6000,
+    image: "https://tse2.mm.bing.net/th/id/OIP.BLhdOI7ynJhgKMJntZAKkQHaKp?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Encarna a Jimmy Hopkins para sobrevivir a la escuela preparatoria Bullworth Academy."
   },
   {
@@ -148,23 +156,23 @@ const defaultGamesList = [
     name: "FIFA Street 2",
     category: "Los más pedidos",
     price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2044.jpg",
+    image: "https://tse1.mm.bing.net/th/id/OIP.gzqHLZpblXNIQpCt55HITwHaKY?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Fútbol callejero de estrellas con trucos, regates y jugadas espectaculares."
   },
   {
     id: "g19",
-    name: "God of War I [Español Dub MOD]",
+    name: "God of War I",
     category: "MODS",
     price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xa2.jpg",
+    image: "https://th.bing.com/th/id/R.37b2d11a4457e35debae01428cdf2f74?rik=ccullnotKdwfUg&riu=http%3a%2f%2f2.bp.blogspot.com%2f-1pQo2CHmL2c%2fVIOlt_d1J_I%2fAAAAAAAAAJU%2fuF8Z9iaBQfY%2fs1600%2fvv.jpg&ehk=FELy08OeV3UgAL6A3URkPWtvIcWCR4IlXAY4ObQPx1s%3d&risl=&pid=ImgRaw&r=0",
     description: "El inicio de la leyenda de Kratos totalmente doblado al español castellano."
   },
   {
     id: "g20",
     name: "Need for Speed: Underground 2",
     category: "Los más pedidos",
-    price: 4000,
-    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co2385.jpg",
+    price: 5000,
+    image: "https://tse3.mm.bing.net/th/id/OIP.sXaAPuYueEsqGVOW9A_oBgHaKl?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Tuning extremo y libertad total para conducir por la ciudad nocturna de Bayview."
   }
 ];
