@@ -1,8 +1,8 @@
-// PS2 Retro Catalog Main JavaScript Application Logic (Global $4.000 Price Update)
+// PS2 Retro Catalog Main JavaScript Application Logic (GitHub Pages Global Sync Engine)
 
 const WHATSAPP_NUMBER = "5492964476309"; // Target WhatsApp (2964476309)
 const ITEMS_PER_PAGE = 16; // 4 rows x 4 columns grid on desktop
-const STORAGE_KEY = 'ps2_catalog_master_v5';
+const STORAGE_KEY = 'ps2_catalog_master_v6';
 const ADMIN_PASSWORD = "040120"; // Required Password for Admin Mode
 
 // App State
@@ -12,6 +12,7 @@ let searchQuery = "";
 let currentPage = 1;
 let cart = [];
 let adminModeActive = localStorage.getItem('ps2_admin_mode_active') === 'true';
+let hasUnpublishedChanges = false;
 
 // Default PS2 Games Catalog Initial Database ($4.000 ARS)
 const defaultGamesList = [
@@ -241,25 +242,25 @@ function showToast(message) {
   }, 3200);
 }
 
-// Initialize Catalog Data
+// Initialize Catalog Data (Fetches master games.json from GitHub first!)
 async function initData() {
   let masterData = [];
 
-  // 1. Fetch games.json with cache busting
+  // 1. Always fetch latest games.json from GitHub Pages server with cache busting
   try {
-    const response = await fetch('games.json?v=' + Date.now());
+    const response = await fetch('games.json?t=' + Date.now());
     if (response.ok) {
       masterData = await response.json();
     }
   } catch (e) {
-    console.log("Cargando catálogo por defecto...");
+    console.log("No se pudo cargar games.json remoto, usando fallback.");
   }
 
   if (!Array.isArray(masterData) || masterData.length === 0) {
     masterData = [...defaultGamesList];
   }
 
-  // 2. Check local storage for admin edits
+  // 2. Load catalog games
   const storedGames = localStorage.getItem(STORAGE_KEY);
   if (storedGames) {
     try {
@@ -299,6 +300,19 @@ function saveCatalogToStorage() {
   } catch(e) {
     console.error("Error saving catalog:", e);
   }
+}
+
+// Export current games to games.json file
+function exportCatalogJSON() {
+  try { playAddCartSound(); } catch(e){}
+  const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(catalogGames, null, 2));
+  const downloadAnchor = document.createElement('a');
+  downloadAnchor.setAttribute("href", dataStr);
+  downloadAnchor.setAttribute("download", "games.json");
+  document.body.appendChild(downloadAnchor);
+  downloadAnchor.click();
+  downloadAnchor.remove();
+  alert("☁️ Archivo 'games.json' descargado.\n\nPara que tus clientes en GitHub Pages vean los nuevos juegos y fotos, reemplaza el archivo games.json en tu carpeta o avísame por el chat para subirlo automáticamente con git push!");
 }
 
 // Save cart to local storage
@@ -507,6 +521,7 @@ function saveNewGame(event) {
 
   catalogGames.unshift(newGame);
   saveCatalogToStorage();
+  hasUnpublishedChanges = true;
 
   closeAddGameModal();
 
@@ -520,7 +535,7 @@ function saveNewGame(event) {
   });
 
   renderCatalog();
-  showToast(`✨ Juego "${newGame.name}" agregado con éxito ($4.000)`);
+  showToast(`✨ Juego "${newGame.name}" agregado. Recuerda guardar en GitHub para que tus clientes lo vean.`);
   try { playAddCartSound(); } catch(e){}
   return false;
 }
@@ -573,9 +588,10 @@ function saveEditedGame(event) {
   game.description = newDesc;
 
   saveCatalogToStorage();
+  hasUnpublishedChanges = true;
   closeEditGameModal();
   renderCatalog();
-  showToast(`✏️ Juego "${game.name}" actualizado`);
+  showToast(`✏️ Juego "${game.name}" actualizado.`);
   try { playAddCartSound(); } catch(e){}
   return false;
 }
@@ -590,13 +606,13 @@ function deleteGame(gameId) {
     try { playClickSound(); } catch(e){}
     catalogGames = catalogGames.filter(g => g.id !== gameId);
 
-    // Remove from cart if present
     cart = cart.filter(i => i.id !== gameId);
     saveCartToStorage();
 
     saveCatalogToStorage();
+    hasUnpublishedChanges = true;
     renderCatalog();
-    showToast(`🗑️ Juego "${game.name}" eliminado del catálogo`);
+    showToast(`🗑️ Juego "${game.name}" eliminado.`);
   }
 }
 
