@@ -114,6 +114,36 @@ header {
   flex-wrap: wrap;
 }
 
+/* Payment Notice Banner */
+.payment-notice-banner {
+  background: linear-gradient(90deg, rgba(255, 200, 0, 0.15), rgba(255, 0, 127, 0.2), rgba(255, 200, 0, 0.15));
+  border-bottom: 1px solid var(--yellow-glow);
+  color: var(--yellow-glow);
+  text-align: center;
+  padding: 10px 0;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  box-shadow: 0 0 15px rgba(255, 200, 0, 0.2);
+}
+
+.payment-notice-banner .notice-icon {
+  margin-right: 6px;
+}
+
+.modal-payment-alert {
+  background: rgba(255, 200, 0, 0.15);
+  border: 1px solid var(--yellow-glow);
+  color: var(--yellow-glow);
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  margin-bottom: 16px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 200, 0, 0.2);
+}
+
 /* Retro Neon Buttons */
 .btn-neon {
   background: rgba(18, 22, 38, 0.9);
@@ -511,6 +541,9 @@ body.admin-mode .card-quick-actions {
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
 }
 
 .btn-add-quote:hover {

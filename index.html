@@ -30,11 +30,19 @@
           🔊 Audio: ON
         </button>
         <button class="btn-neon btn-magenta" onclick="openCartModal()">
-          🛒 Ver Lista / Cotizar <span id="cart-count-badge" class="cart-badge">0</span>
+          🛒 Ver mi carrito <span id="cart-count-badge" class="cart-badge">0</span>
         </button>
       </div>
     </div>
   </header>
+
+  <!-- Banner de Advertencia Importante de Pago -->
+  <div class="payment-notice-banner">
+    <div class="container">
+      <span class="notice-icon">⚠️</span>
+      <strong>IMPORTANTE:</strong> LOS JUEGOS SE PAGAN AL MOMENTO DE LA ENTREGA.
+    </div>
+  </div>
 
   <!-- Contenido Principal -->
   <main class="container" id="catalog-section">
@@ -105,6 +113,7 @@
         <div class="instruction-card">
           <h3>📀 1. Calidad de Discos & Formas de Envío</h3>
           <ul>
+            <li><strong>Forma de Pago:</strong> <span style="color: var(--yellow-glow); font-weight: bold;">LOS JUEGOS SE PAGAN AL MOMENTO DE LA ENTREGA.</span> Sin seña previa.</li>
             <li><strong>Calidad Garantizada:</strong> Los DVDs utilizados son 100% nuevos y de la mejor calidad del mercado para garantizar máxima compatibilidad y durabilidad.</li>
             <li><strong>Compatibilidad:</strong> Verifica que tu consola PlayStation 2 posea chip de destraba interno (ej. Matrix Infinity, Toxic) para leer discos grabados en formato DVD-R.</li>
             <li><strong>Envíos a Domicilio:</strong> Se realizan envíos a partir de la compra de 5 juegos en adelante.</li>
@@ -215,12 +224,17 @@
     </div>
   </div>
 
-  <!-- Modal del Cotizador / Lista de Juegos -->
+  <!-- Modal de Mi Carrito de Compras -->
   <div id="cart-modal" class="modal-overlay">
     <div class="modal-content">
       <div class="modal-header">
-        <h2>🛒 Mi Lista de Pedido / Cotizador</h2>
+        <h2>🛒 Mi Carrito de Compras</h2>
         <button class="btn-close" onclick="closeCartModal()">&times;</button>
+      </div>
+
+      <!-- Advertencia de Pago en el Carrito -->
+      <div class="modal-payment-alert">
+        ⚠️ <strong>RECUERDA:</strong> LOS JUEGOS SE PAGAN AL MOMENTO DE LA ENTREGA.
       </div>
       
       <div id="cart-items-list" class="cart-items-list">

@@ -1,4 +1,4 @@
-// PS2 Retro Catalog Main JavaScript Application Logic (Option 1 & GitHub Auto Sync Ready)
+// PS2 Retro Catalog Main JavaScript Application Logic (Cart Text Updates & Payment Warning)
 
 const WHATSAPP_NUMBER = "5492964476309"; // Target WhatsApp (2964476309)
 const ITEMS_PER_PAGE = 16; // 4 rows x 4 columns grid on desktop
@@ -160,12 +160,12 @@ const defaultGamesList = [
     description: "Fútbol callejero de estrellas con trucos, regates y jugadas espectaculares."
   },
   {
-    "id": "g19",
-    "name": "God of War I [Español Dub MOD]",
-    "category": "MODS",
-    "price": 4000,
-    "image": "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xa2.jpg",
-    "description": "El inicio de la leyenda de Kratos totalmente doblado al español castellano."
+    id: "g19",
+    name: "God of War I [Español Dub MOD]",
+    category: "MODS",
+    price: 4000,
+    image: "https://images.igdb.com/igdb/image/upload/t_cover_big/co1xa2.jpg",
+    description: "El inicio de la leyenda de Kratos totalmente doblado al español castellano."
   },
   {
     id: "g20",
@@ -258,8 +258,22 @@ async function initData() {
     masterData = [...defaultGamesList];
   }
 
-  // Force updated master json for v7 sync
-  catalogGames = masterData;
+  const storedGames = localStorage.getItem(STORAGE_KEY);
+  if (storedGames) {
+    try {
+      const localData = JSON.parse(storedGames);
+      if (Array.isArray(localData) && localData.length > 0) {
+        catalogGames = localData;
+      } else {
+        catalogGames = masterData;
+      }
+    } catch (e) {
+      catalogGames = masterData;
+    }
+  } else {
+    catalogGames = masterData;
+  }
+
   saveCatalogToStorage();
 
   const storedCart = localStorage.getItem('ps2_user_cart');
@@ -465,7 +479,7 @@ function renderCatalog() {
           <div class="card-footer">
             <span class="game-price">$${(game.price || 4000).toLocaleString('es-AR')}</span>
             <button class="btn-add-quote" onclick="addToCart('${game.id}')">
-               Cotizar
+              🛒 Agregar al carrito
             </button>
           </div>
         </div>
@@ -590,7 +604,7 @@ function saveNewGame(event) {
   });
 
   renderCatalog();
-  showToast(`✨ Juego "${newGame.name}" agregado. Presiona "☁️ Publicar a Clientes" para subir a GitHub.`);
+  showToast(`✨ Juego "${newGame.name}" agregado al carrito.`);
   try { playAddCartSound(); } catch(e){}
   return false;
 }
@@ -708,7 +722,7 @@ function addToCart(gameId) {
   }
 
   saveCartToStorage();
-  showToast(`🛒 "${game.name}" agregado a la lista`);
+  showToast(`🛒 "${game.name}" agregado al carrito`);
 }
 
 function updateCartBadge() {
@@ -761,8 +775,8 @@ function renderCartModalContent() {
   if (cart.length === 0) {
     listContainer.innerHTML = `
       <div style="text-align: center; padding: 30px; color: var(--text-muted);">
-        <p>Tu cotizador está vacío.</p>
-        <p style="font-size: 0.85rem; margin-top: 6px;">Selecciona juegos del catálogo presionando " Cotizar".</p>
+        <p>Tu carrito está vacío.</p>
+        <p style="font-size: 0.85rem; margin-top: 6px;">Selecciona juegos del catálogo presionando "🛒 Agregar al carrito".</p>
       </div>
     `;
     if (totalLabel) totalLabel.textContent = "$0";
@@ -801,14 +815,14 @@ function renderCartModalContent() {
 // Send Order directly via WhatsApp to number 2964476309
 function sendWhatsAppOrder() {
   if (cart.length === 0) {
-    alert("Tu cotizador está vacío. Agrega al menos un juego para enviar el pedido.");
+    alert("Tu carrito está vacío. Agrega al menos un juego para enviar el pedido.");
     return;
   }
 
   try { playAddCartSound(); } catch(e){}
 
   let message = "🎮 *PEDIDO DE JUEGOS DE PS2 EN DVD*\n\n";
-  message += "Hola, quisiera realizar el pedido de la siguiente cotización:\n\n";
+  message += "Hola, quisiera realizar el siguiente pedido:\n\n";
 
   let totalSum = 0;
   cart.forEach((item, index) => {
@@ -817,7 +831,8 @@ function sendWhatsAppOrder() {
     message += `${index + 1}. *${item.name}* (x${item.quantity}) - $${itemSubtotal.toLocaleString('es-AR')}\n`;
   });
 
-  message += `\n💰 *TOTAL A PAGAR:* $${totalSum.toLocaleString('es-AR')}\n\n`;
+  message += `\n💰 *TOTAL A PAGAR:* $${totalSum.toLocaleString('es-AR')}\n`;
+  message += "💳 *MEDIO DE PAGO:* Los juegos se pagan al momento de la entrega.\n\n";
   message += "📌 Por favor confírmame disponibilidad para coordinar la entrega o envío. ¡Muchas gracias!";
 
   const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
