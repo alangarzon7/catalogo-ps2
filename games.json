@@ -1,5 +1,53 @@
 [
   {
+    "id": "g_1786289027500",
+    "name": "Dragon Ball Z Sparking Zero (MOD)",
+    "image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9dd380b6-e049-450a-826c-027e2393bc39/dhk9ugx-e7276198-3482-456c-87c3-89836261be06.png/v1/fill/w_1280,h_1808,q_80,strp/dragon_ball_sparking__zero_ps2_concept_art__by_epidarck_dhk9ugx-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTgwOCIsInBhdGgiOiJcL2ZcLzlkZDM4MGI2LWUwNDktNDUwYS04MjZjLTAyN2UyMzkzYmMzOVwvZGhrOXVneC1lNzI3NjE5OC0zNDgyLTQ1NmMtODdjMy04OTgzNjI2MWJlMDYucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.t57mKiPlrwnbgCCDVHSHAjfPTFf39jFy4VSWmZ1F3ZY",
+    "category": "MODS",
+    "price": 5000,
+    "description": "Juego modificado, incluye a los ultimos personajes de la saga."
+  },
+  {
+    "id": "g_1786288943591",
+    "name": "Dragon Ball Z Budokai Tenkaichi 2",
+    "image": "https://tse4.mm.bing.net/th/id/OIP.qEs2QYbUbRRu9rKa29AQXwHaKi?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Segundo juego de la saga Budokai Tenkaichi."
+  },
+  {
+    "id": "g_1786288871030",
+    "name": "Dragon Ball Z Budokai Tenkaichi",
+    "image": "https://www.lukiegames.com/assets/images/PS2/ps2_dragon_ball_z_budokai_tenkaichi_p_1gx1y6.jpg",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Primer juego de la saga Budokai Tenkaichi"
+  },
+  {
+    "id": "g_1786288822810",
+    "name": "Dragon Ball Z Infinite World",
+    "image": "https://tse3.mm.bing.net/th/id/OIP.eesfAEwEJG_kjchjysVBkAHaKe?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "El jugador enfrenta a su personaje contra otros personajes controlados por la IA del juego o por otro jugador, dependiendo del modo en que se encuentren el jugador o los jugadores."
+  },
+  {
+    "id": "g_1786288670709",
+    "name": "Dragon Ball Z Sagas",
+    "image": "https://th.bing.com/th/id/R.da00157e473fddfc411e049beeb02556?rik=Y5ncMvs6Eom%2fig&riu=http%3a%2f%2fwww.thevideogamecompany.com%2fcdn%2fshop%2fproducts%2fdragon-ball-z-sagas-sony-playstation-2-ps2-742725256316-cover-art.jpg%3fv%3d1656647304%26width%3d2048&ehk=OtrfOQE7uANv8qvTe3eA90yFsBbRPg4cNxigGgYc1wA%3d&risl=&pid=ImgRaw&r=0",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Dragon Ball Z: Sagas es un videojuego de acción y aventura"
+  },
+  {
+    "id": "g_1786288619963",
+    "name": "Los Simpsons Road Rage",
+    "image": "https://www.lukiegames.com/assets/images/PS2/ps2_simpsons_road_rage-110214.jpg",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "The Simpsons: Road Rage es un videojuego de carreras"
+  },
+  {
     "id": "g_1786288558060",
     "name": "Los Simpsons Skateboarding",
     "image": "https://www.lukiegames.com/assets/images/PS2/ps2_simpsons_skateboarding-110214.jpg",
