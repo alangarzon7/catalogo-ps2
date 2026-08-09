@@ -1,4 +1,4 @@
-// PS2 Retro Catalog Main JavaScript Application Logic (v9 Sync Updated)
+// PS2 Retro Catalog Main JavaScript Application Logic (Improved GitHub API Error Handler)
 
 const WHATSAPP_NUMBER = "5492964476309"; // Target WhatsApp (2964476309)
 const ITEMS_PER_PAGE = 16; // 4 rows x 4 columns grid on desktop
@@ -241,7 +241,17 @@ function showToast(message) {
   }, 3500);
 }
 
-// Initialize Catalog Data (Fetches master games.json from GitHub Pages first!)
+// Reset/Change GitHub Token
+function resetGitHubToken() {
+  const currentToken = localStorage.getItem('ps2_github_token') || "";
+  const newToken = prompt("🔑 Ingrese o actualice su Personal Access Token (PAT) de GitHub:\n\n(Asegúrate de haber marcado el permiso 'repo' al generar el Token en GitHub)", currentToken);
+  if (newToken !== null && newToken.trim() !== "") {
+    localStorage.setItem('ps2_github_token', newToken.trim());
+    showToast("🔑 Token de GitHub guardado.");
+  }
+}
+
+// Initialize Catalog Data
 async function initData() {
   let masterData = [];
 
@@ -290,7 +300,7 @@ async function publishToGitHub() {
 
   let token = localStorage.getItem('ps2_github_token');
   if (!token) {
-    const inputToken = prompt("🔑 Ingrese su Personal Access Token (PAT) de GitHub:\n\n(Este token permitirá publicar automáticamente los juegos para que TODOS tus clientes los vean en GitHub Pages con 1 clic desde tu celular o PC)");
+    const inputToken = prompt("🔑 Ingrese su Personal Access Token (PAT) de GitHub:\n\n(Debes generarlo en GitHub -> Settings -> Developer settings -> Personal access tokens -> Generate new token (classic) y marcar la casilla 'repo')");
     if (!inputToken || !inputToken.trim()) return;
     token = inputToken.trim();
     localStorage.setItem('ps2_github_token', token);
@@ -303,12 +313,14 @@ async function publishToGitHub() {
   const filePath = "games.json";
   const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 
+  const authHeader = token.startsWith('github_pat_') ? `Bearer ${token}` : `token ${token}`;
+
   try {
     // 1. Fetch current SHA of games.json
     let sha = "";
     const getRes = await fetch(apiUrl, {
       headers: {
-        'Authorization': `token ${token}`,
+        'Authorization': authHeader,
         'Accept': 'application/vnd.github.v3+json'
       }
     });
@@ -316,6 +328,10 @@ async function publishToGitHub() {
     if (getRes.ok) {
       const getData = await getRes.json();
       sha = getData.sha;
+    } else if (getRes.status === 404) {
+      localStorage.removeItem('ps2_github_token');
+      alert("❌ Error 404: El Token ingresado no tiene permisos sobre tu repositorio 'catalogo-ps2'.\n\nSOLUCIÓN:\n1. Ve a https://github.com/settings/tokens\n2. Presiona 'Generate new token (classic)'\n3. MARCA LA CASILLA 'repo' (Full control of private repositories / Public repos)\n4. Copia el nuevo token ghp_... y vuélvelo a pegar aquí.");
+      return;
     }
 
     // 2. Format JSON content
@@ -333,7 +349,7 @@ async function publishToGitHub() {
     const putRes = await fetch(apiUrl, {
       method: 'PUT',
       headers: {
-        'Authorization': `token ${token}`,
+        'Authorization': authHeader,
         'Content-Type': 'application/json',
         'Accept': 'application/vnd.github.v3+json'
       },
@@ -345,11 +361,11 @@ async function publishToGitHub() {
       try { playAddCartSound(); } catch(e){}
     } else {
       const errData = await putRes.json();
-      if (errData.message && errData.message.includes('Bad credentials')) {
+      if (errData.message && (errData.message.includes('Bad credentials') || getRes.status === 401)) {
         localStorage.removeItem('ps2_github_token');
-        alert("❌ Token de GitHub inválido. Vuelve a hacer clic en Publicar e ingresa un token válido.");
+        alert("❌ Token de GitHub inválido o vencido. Haz clic de nuevo en Publicar para ingresar un Token correcto.");
       } else {
-        alert("❌ Error al publicar en GitHub: " + (errData.message || "Verifique credenciales"));
+        alert("❌ Error al publicar en GitHub: " + (errData.message || "Verifique credenciales de GitHub"));
       }
     }
   } catch (err) {
