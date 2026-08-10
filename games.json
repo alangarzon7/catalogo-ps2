@@ -1,11 +1,179 @@
 [
   {
+    "id": "g_1786320347847",
+    "name": "PES 6",
+    "image": "https://tse2.mm.bing.net/th/id/OIP.RTmo3enP1ySjhZk5dKVuigHaKl?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "PES 6"
+  },
+  {
+    "id": "g_1786290240419",
+    "name": "EFOOTBALL 2026",
+    "image": "https://tse3.mm.bing.net/th/id/OIP.7awFFRupXvZthGMJNAr3OwAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 6000,
+    "description": "PES actualizado a marzo 2026. Con todos los jugadores del momento."
+  },
+  {
+    "id": "g_1786290124819",
+    "name": "GOD OF PES 2023",
+    "image": "https://i.ytimg.com/vi/bwlm0uHVMPQ/maxresdefault.jpg",
+    "category": "Todos los Juegos",
+    "price": 5000,
+    "description": "PES con MODS. Acompaña a los campeones del mundo"
+  },
+  {
+    "id": "g_1786290040058",
+    "name": "PES  2013",
+    "image": "https://tse2.mm.bing.net/th/id/OIP.7-Ucxadnh5iKf4QH3y6ifwHaKh?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Los más pedidos",
+    "price": 5000,
+    "description": "PES 2013"
+  },
+  {
+    "id": "g_1786290006055",
+    "name": "PES 2012",
+    "image": "https://tse4.mm.bing.net/th/id/OIP.5JP3P9wEtifER66n_K-JOQHaKe?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Los más pedidos",
+    "price": 5000,
+    "description": "PES 2012"
+  },
+  {
+    "id": "g_1786289976165",
+    "name": "PES 2011",
+    "image": "https://tse1.mm.bing.net/th/id/OIP.Rj_-t90JXYN3P_9iICda8gHaKh?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Los más pedidos",
+    "price": 6000,
+    "description": "De los mejores juegos de futbol"
+  },
+  {
+    "id": "g_1786289915792",
+    "name": "PES 2010",
+    "image": "https://tse1.mm.bing.net/th/id/OIP.4UIHbmDm1TasDjIQSHviNAHaKf?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Los más pedidos",
+    "price": 5000,
+    "description": "PES 2010"
+  },
+  {
+    "id": "g_1786289773490",
+    "name": "PES 2009",
+    "image": "https://cdn.mobygames.com/covers/19109827-pes-2009-pro-evolution-soccer-playstation-2-front-cover.jpg",
+    "category": "Los más pedidos",
+    "price": 5000,
+    "description": "El rey de los juegos de fútbol ha vuelto y promete ser mejor que nunca."
+  },
+  {
+    "id": "g_1786289609623",
+    "name": "PES 2008",
+    "image": "https://tse4.mm.bing.net/th/id/OIP.nVb9iwZC7zCaXH4HRFcw7QHaKf?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Viaja a esa época dorada del fútbol virtual, donde cada partido era una oportunidad para demostrar tus habilidades y ganar el torneo de tus sueños"
+  },
+  {
+    "id": "g_1786289540290",
+    "name": "Guitar Hero V",
+    "image": "https://th.bing.com/th/id/R.e11a73fd70405e9436f7754fa8a965d2?rik=%2b7TubCWlRUMXIw&riu=http%3a%2f%2fmedia.ign.com%2fgames%2fimage%2fobject%2f143%2f14303816%2fGuitar-Hero-5_US_FINAL_PS2_Basic.jpg&ehk=T07upxNi1K826Fj9FSRUIelWwNMgmNRuPIQZNSBWVgE%3d&risl=&pid=ImgRaw&r=0",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Quinto juego de la saga."
+  },
+  {
+    "id": "g_1786289387108",
+    "name": "Grant Thef Auto Batman",
+    "image": "https://http2.mlstatic.com/D_NQ_NP_896782-MLA79279789636_092024-O.webp",
+    "category": "MODS",
+    "price": 4000,
+    "description": "GTA con mods."
+  },
+  {
+    "id": "g_1786289297923",
+    "name": "Grand Thef Auto 3",
+    "image": "https://tse1.mm.bing.net/th/id/OIP.gaFV8IItAZl5EiwNZLhynQHaKg?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Este título es notable por ser el primer juego de la serie Grand Theft Auto en presentar un mundo abierto en 3D"
+  },
+  {
+    "id": "g_1786289201845",
+    "name": "Grand Thef Auto Vice City",
+    "image": "https://tse4.mm.bing.net/th/id/OIP.-eLVXpKcXeksWxiDhA_LxwHaKg?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Los más pedidos",
+    "price": 5000,
+    "description": "Grand Theft Auto ambientado en los años 80, en la ciudad de Miami, en una entrega con homenajes a los mitos de la época, que recuerda a películas como El Precio del Poder."
+  },
+  {
+    "id": "g_1786289027500",
+    "name": "Dragon Ball Z Sparking Zero (MOD)",
+    "image": "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/9dd380b6-e049-450a-826c-027e2393bc39/dhk9ugx-e7276198-3482-456c-87c3-89836261be06.png/v1/fill/w_1280,h_1808,q_80,strp/dragon_ball_sparking__zero_ps2_concept_art__by_epidarck_dhk9ugx-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTgwOCIsInBhdGgiOiJcL2ZcLzlkZDM4MGI2LWUwNDktNDUwYS04MjZjLTAyN2UyMzkzYmMzOVwvZGhrOXVneC1lNzI3NjE5OC0zNDgyLTQ1NmMtODdjMy04OTgzNjI2MWJlMDYucG5nIiwid2lkdGgiOiI8PTEyODAifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.t57mKiPlrwnbgCCDVHSHAjfPTFf39jFy4VSWmZ1F3ZY",
+    "category": "MODS",
+    "price": 5000,
+    "description": "Juego modificado, incluye a los ultimos personajes de la saga."
+  },
+  {
+    "id": "g_1786288943591",
+    "name": "Dragon Ball Z Budokai Tenkaichi 2",
+    "image": "https://tse4.mm.bing.net/th/id/OIP.qEs2QYbUbRRu9rKa29AQXwHaKi?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Segundo juego de la saga Budokai Tenkaichi."
+  },
+  {
+    "id": "g_1786288871030",
+    "name": "Dragon Ball Z Budokai Tenkaichi",
+    "image": "https://www.lukiegames.com/assets/images/PS2/ps2_dragon_ball_z_budokai_tenkaichi_p_1gx1y6.jpg",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Primer juego de la saga Budokai Tenkaichi"
+  },
+  {
+    "id": "g_1786288822810",
+    "name": "Dragon Ball Z Infinite World",
+    "image": "https://tse3.mm.bing.net/th/id/OIP.eesfAEwEJG_kjchjysVBkAHaKe?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "El jugador enfrenta a su personaje contra otros personajes controlados por la IA del juego o por otro jugador, dependiendo del modo en que se encuentren el jugador o los jugadores."
+  },
+  {
+    "id": "g_1786288670709",
+    "name": "Dragon Ball Z Sagas",
+    "image": "https://th.bing.com/th/id/R.da00157e473fddfc411e049beeb02556?rik=Y5ncMvs6Eom%2fig&riu=http%3a%2f%2fwww.thevideogamecompany.com%2fcdn%2fshop%2fproducts%2fdragon-ball-z-sagas-sony-playstation-2-ps2-742725256316-cover-art.jpg%3fv%3d1656647304%26width%3d2048&ehk=OtrfOQE7uANv8qvTe3eA90yFsBbRPg4cNxigGgYc1wA%3d&risl=&pid=ImgRaw&r=0",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Dragon Ball Z: Sagas es un videojuego de acción y aventura"
+  },
+  {
+    "id": "g_1786288619963",
+    "name": "Los Simpsons Road Rage",
+    "image": "https://www.lukiegames.com/assets/images/PS2/ps2_simpsons_road_rage-110214.jpg",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "The Simpsons: Road Rage es un videojuego de carreras"
+  },
+  {
+    "id": "g_1786288558060",
+    "name": "Los Simpsons Skateboarding",
+    "image": "https://www.lukiegames.com/assets/images/PS2/ps2_simpsons_skateboarding-110214.jpg",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "The Simpsons Skateboarding es un videojuego de deportes basado en la serie animada Los Simpsons"
+  },
+  {
+    "id": "g_1786288314884",
+    "name": "Los Simpsons The Game",
+    "image": "https://tse1.mm.bing.net/th/id/OIP.2gXYgh-bbV7ztpc01X_ypwHaKf?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 5000,
+    "description": "Sigue a los cinco miembros de la familia Simpsons —Homer, Marge, Bart, Lisa y Maggie— quienes descubren que forman parte de un juego y reciben superpoderes para resolver varias situaciones."
+  },
+  {
     "id": "g_1786287279225",
     "name": "Guitar Hero III",
     "image": "https://archive.org/download/gh-3-c_202503/OIPfixed.jpeg",
     "category": "Todos los Juegos",
     "price": 5000,
-    "description": "Juego en DVD para PS2."
+    "description": "Guitar Hero III: Legends of Rock es un videojuego musical donde los jugadores simulan tocar la guitarra en canciones icónicas del rock, con modos de un solo jugador, multijugador y batallas de jefes."
   },
   {
     "id": "g1",
