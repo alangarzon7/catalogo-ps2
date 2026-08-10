@@ -1,24 +1,24 @@
-/* PS2 Retro Gamer CSS Stylesheet */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&display=swap');
+/* PS2 Retro Gamer CSS Stylesheet - Optimized Legibility & Mobile UX */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@600;700;800&family=Share+Tech+Mono&display=swap');
 
 :root {
   --bg-dark: #07090e;
-  --bg-card: rgba(18, 22, 36, 0.85);
-  --bg-card-hover: rgba(26, 32, 54, 0.95);
+  --bg-card: rgba(18, 24, 40, 0.92);
+  --bg-card-hover: rgba(28, 36, 60, 0.98);
   --cyan-glow: #00f0ff;
   --magenta-glow: #ff007f;
   --purple-glow: #8b00ff;
   --green-glow: #00ff88;
   --yellow-glow: #ffc800;
   --red-glow: #ff3344;
-  --text-main: #f0f4f8;
-  --text-muted: #94a3b8;
+  --text-main: #ffffff;
+  --text-muted: #cbd5e1; /* Brighter high-contrast text */
   --font-heading: 'Orbitron', sans-serif;
   --font-body: 'Rajdhani', sans-serif;
   --font-mono: 'Share Tech Mono', monospace;
   --ps2-blue: #003791;
-  --border-neon: 1px solid rgba(0, 240, 255, 0.25);
-  --box-shadow-neon: 0 0 15px rgba(0, 240, 255, 0.3);
+  --border-neon: 1px solid rgba(0, 240, 255, 0.35);
+  --box-shadow-neon: 0 0 18px rgba(0, 240, 255, 0.35);
 }
 
 * {
@@ -30,17 +30,19 @@
 body {
   background-color: var(--bg-dark);
   background-image: 
-    radial-gradient(circle at 15% 15%, rgba(139, 0, 255, 0.15) 0%, transparent 45%),
-    radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.12) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.8) 0%, rgba(7, 9, 14, 1) 100%);
+    radial-gradient(circle at 15% 15%, rgba(139, 0, 255, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.85) 0%, rgba(7, 9, 14, 1) 100%);
   background-attachment: fixed;
   color: var(--text-main);
   font-family: var(--font-body);
-  font-size: 17px;
+  font-size: 18px;
+  font-weight: 600;
   line-height: 1.5;
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* Container */
@@ -50,12 +52,12 @@ body {
   padding: 0 20px;
 }
 
-/* Top Header */
+/* Desktop Header */
 header {
-  background: rgba(10, 14, 26, 0.95);
+  background: rgba(10, 14, 26, 0.96);
   border-bottom: 2px solid var(--cyan-glow);
-  box-shadow: 0 4px 25px rgba(0, 240, 255, 0.2);
-  padding: 20px 0;
+  box-shadow: 0 4px 25px rgba(0, 240, 255, 0.25);
+  padding: 16px 0;
   position: sticky;
   top: 0;
   z-index: 100;
@@ -84,7 +86,7 @@ header {
   font-size: 1.4rem;
   padding: 6px 14px;
   border-radius: 6px;
-  border: 1px solid var(--cyan-glow);
+  border: 1.5px solid var(--cyan-glow);
   text-shadow: 0 0 10px var(--cyan-glow);
   box-shadow: 0 0 15px rgba(139, 0, 255, 0.5);
   letter-spacing: 2px;
@@ -95,7 +97,7 @@ header {
   font-size: 1.8rem;
   font-weight: 900;
   text-transform: uppercase;
-  background: linear-gradient(90deg, #fff, var(--cyan-glow), var(--magenta-glow));
+  background: linear-gradient(90deg, #ffffff, var(--cyan-glow), var(--magenta-glow));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   letter-spacing: 2px;
@@ -104,6 +106,7 @@ header {
 .brand-text p {
   color: var(--text-muted);
   font-size: 0.95rem;
+  font-weight: 700;
   letter-spacing: 1px;
 }
 
@@ -116,15 +119,17 @@ header {
 
 /* Payment Notice Banner */
 .payment-notice-banner {
-  background: linear-gradient(90deg, rgba(255, 200, 0, 0.15), rgba(255, 0, 127, 0.2), rgba(255, 200, 0, 0.15));
+  background: linear-gradient(90deg, rgba(255, 200, 0, 0.18), rgba(255, 0, 127, 0.25), rgba(255, 200, 0, 0.18));
   border-bottom: 1px solid var(--yellow-glow);
   color: var(--yellow-glow);
   text-align: center;
   padding: 10px 0;
   font-family: var(--font-heading);
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  font-weight: 700;
   letter-spacing: 1px;
-  box-shadow: 0 0 15px rgba(255, 200, 0, 0.2);
+  box-shadow: 0 0 15px rgba(255, 200, 0, 0.25);
+  text-shadow: 0 0 8px rgba(255, 200, 0, 0.4);
 }
 
 .payment-notice-banner .notice-icon {
@@ -132,23 +137,25 @@ header {
 }
 
 .modal-payment-alert {
-  background: rgba(255, 200, 0, 0.15);
-  border: 1px solid var(--yellow-glow);
+  background: rgba(255, 200, 0, 0.18);
+  border: 1.5px solid var(--yellow-glow);
   color: var(--yellow-glow);
-  padding: 10px 14px;
+  padding: 12px 16px;
   border-radius: 8px;
   font-family: var(--font-heading);
-  font-size: 0.8rem;
-  margin-bottom: 16px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 18px;
   text-align: center;
-  box-shadow: 0 0 10px rgba(255, 200, 0, 0.2);
+  box-shadow: 0 0 12px rgba(255, 200, 0, 0.3);
+  text-shadow: 0 0 6px rgba(255, 200, 0, 0.4);
 }
 
 /* Retro Neon Buttons */
 .btn-neon {
-  background: rgba(18, 22, 38, 0.9);
+  background: rgba(18, 24, 42, 0.95);
   color: var(--cyan-glow);
-  border: 1px solid var(--cyan-glow);
+  border: 1.5px solid var(--cyan-glow);
   padding: 10px 16px;
   font-family: var(--font-heading);
   font-size: 0.85rem;
@@ -163,13 +170,13 @@ header {
   gap: 8px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 0 10px rgba(0, 240, 255, 0.15);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
 }
 
 .btn-neon:hover {
   background: var(--cyan-glow);
   color: #000;
-  box-shadow: 0 0 20px var(--cyan-glow);
+  box-shadow: 0 0 22px var(--cyan-glow);
   transform: translateY(-2px);
 }
 
@@ -187,15 +194,17 @@ header {
 }
 
 .btn-magenta {
-  color: var(--magenta-glow);
+  color: #ffffff;
+  background: rgba(255, 0, 127, 0.25);
   border-color: var(--magenta-glow);
-  box-shadow: 0 0 10px rgba(255, 0, 127, 0.2);
+  box-shadow: 0 0 12px rgba(255, 0, 127, 0.3);
+  text-shadow: 0 0 6px var(--magenta-glow);
 }
 
 .btn-magenta:hover {
   background: var(--magenta-glow);
   color: #fff;
-  box-shadow: 0 0 20px var(--magenta-glow);
+  box-shadow: 0 0 22px var(--magenta-glow);
 }
 
 .btn-green {
@@ -225,12 +234,12 @@ header {
 .btn-sound {
   background: rgba(139, 0, 255, 0.2);
   border-color: var(--purple-glow);
-  color: #d8b4fe;
+  color: #e9d5ff;
 }
 
 .btn-sound.muted {
   border-color: #64748b;
-  color: #94a3b8;
+  color: #cbd5e1;
   background: rgba(30, 41, 59, 0.5);
 }
 
@@ -238,20 +247,21 @@ header {
   background: var(--magenta-glow);
   color: #fff;
   border-radius: 50%;
-  padding: 2px 7px;
-  font-size: 0.75rem;
+  padding: 3px 8px;
+  font-size: 0.8rem;
   font-weight: 900;
+  box-shadow: 0 0 8px var(--magenta-glow);
 }
 
 /* Controls Bar (Filter Tabs + Search + Add Game) */
 .controls-bar {
-  margin: 30px 0 25px 0;
+  margin: 25px 0 20px 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   gap: 15px;
-  background: rgba(15, 20, 35, 0.75);
+  background: rgba(15, 20, 35, 0.85);
   border: var(--border-neon);
   padding: 16px 20px;
   border-radius: 12px;
@@ -266,13 +276,13 @@ header {
 }
 
 .tab-btn {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.06);
   color: var(--text-muted);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   padding: 9px 18px;
   border-radius: 6px;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -284,10 +294,10 @@ header {
 }
 
 .tab-btn.active {
-  background: linear-gradient(135deg, rgba(0, 240, 255, 0.2), rgba(139, 0, 255, 0.3));
+  background: linear-gradient(135deg, rgba(0, 240, 255, 0.25), rgba(139, 0, 255, 0.35));
   border-color: var(--cyan-glow);
   color: #fff;
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.45);
 }
 
 .search-and-add {
@@ -304,20 +314,21 @@ header {
 
 .search-box input {
   width: 100%;
-  background: rgba(7, 9, 14, 0.9);
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  background: rgba(7, 9, 14, 0.95);
+  border: 1px solid rgba(0, 240, 255, 0.35);
   color: #fff;
   padding: 10px 14px 10px 38px;
   border-radius: 6px;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
   outline: none;
   transition: all 0.25s ease;
 }
 
 .search-box input:focus {
   border-color: var(--cyan-glow);
-  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+  box-shadow: 0 0 14px rgba(0, 240, 255, 0.4);
 }
 
 .search-box span {
@@ -357,6 +368,7 @@ body.admin-mode .card-quick-actions {
   color: var(--text-muted);
   font-family: var(--font-mono);
   font-size: 0.95rem;
+  font-weight: 700;
   flex-wrap: wrap;
   gap: 10px;
 }
@@ -379,7 +391,7 @@ body.admin-mode .card-quick-actions {
 /* Game Card Style */
 .game-card {
   background: var(--bg-card);
-  border: 1px solid rgba(0, 240, 255, 0.15);
+  border: 1px solid rgba(0, 240, 255, 0.2);
   border-radius: 12px;
   overflow: hidden;
   display: flex;
@@ -392,7 +404,7 @@ body.admin-mode .card-quick-actions {
 .game-card:hover {
   transform: translateY(-7px) scale(1.02);
   border-color: var(--cyan-glow);
-  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
   background: var(--bg-card-hover);
 }
 
@@ -427,19 +439,19 @@ body.admin-mode .card-quick-actions {
 }
 
 .btn-card-action {
-  background: rgba(7, 9, 14, 0.9);
+  background: rgba(7, 9, 14, 0.95);
   border: 1px solid var(--yellow-glow);
   color: #fff;
-  width: 32px;
-  height: 32px;
+  width: 34px;
+  height: 34px;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
 }
 
 .btn-card-action:hover {
@@ -458,17 +470,17 @@ body.admin-mode .card-quick-actions {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(7, 9, 14, 0.85);
+  background: rgba(7, 9, 14, 0.9);
   border: 1px solid var(--cyan-glow);
   color: var(--cyan-glow);
   font-family: var(--font-heading);
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  padding: 4px 8px;
+  padding: 4px 9px;
   border-radius: 4px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  box-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.8);
 }
 
 .badge-mods {
@@ -491,20 +503,22 @@ body.admin-mode .card-quick-actions {
 
 .game-title {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   font-weight: 700;
-  color: #fff;
+  color: #ffffff;
   margin-bottom: 8px;
-  line-height: 1.3;
+  line-height: 1.35;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+  text-shadow: 0 0 4px rgba(0,0,0,0.8);
 }
 
 .game-desc {
   color: var(--text-muted);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
+  font-weight: 600;
   margin-bottom: 14px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -518,26 +532,26 @@ body.admin-mode .card-quick-actions {
   justify-content: space-between;
   margin-top: auto;
   padding-top: 12px;
-  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+  border-top: 1px dashed rgba(255, 255, 255, 0.15);
   gap: 8px;
 }
 
 .game-price {
   font-family: var(--font-mono);
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1.25rem;
+  font-weight: 800;
   color: var(--green-glow);
-  text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
 }
 
 .btn-add-quote {
-  background: rgba(0, 240, 255, 0.12);
+  background: rgba(0, 240, 255, 0.15);
   color: var(--cyan-glow);
-  border: 1px solid var(--cyan-glow);
-  padding: 7px 12px;
+  border: 1.5px solid var(--cyan-glow);
+  padding: 8px 14px;
   border-radius: 6px;
   font-family: var(--font-heading);
-  font-size: 0.75rem;
+  font-size: 0.78rem;
   font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -549,7 +563,7 @@ body.admin-mode .card-quick-actions {
 .btn-add-quote:hover {
   background: var(--cyan-glow);
   color: #000;
-  box-shadow: 0 0 12px var(--cyan-glow);
+  box-shadow: 0 0 14px var(--cyan-glow);
 }
 
 /* Pagination Bar */
@@ -563,13 +577,14 @@ body.admin-mode .card-quick-actions {
 }
 
 .page-btn {
-  background: rgba(15, 20, 35, 0.8);
-  border: 1px solid rgba(0, 240, 255, 0.3);
+  background: rgba(15, 20, 35, 0.85);
+  border: 1px solid rgba(0, 240, 255, 0.35);
   color: var(--text-main);
   padding: 10px 16px;
   border-radius: 6px;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 700;
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -596,9 +611,9 @@ body.admin-mode .card-quick-actions {
 
 /* Instructions & Maintenance Section */
 .instructions-section {
-  background: rgba(12, 16, 28, 0.9);
-  border: 1px solid var(--magenta-glow);
-  box-shadow: 0 0 25px rgba(255, 0, 127, 0.15);
+  background: rgba(12, 16, 28, 0.95);
+  border: 1.5px solid var(--magenta-glow);
+  box-shadow: 0 0 25px rgba(255, 0, 127, 0.2);
   border-radius: 14px;
   padding: 35px;
   margin-bottom: 60px;
@@ -624,8 +639,8 @@ body.admin-mode .card-quick-actions {
 }
 
 .instruction-card {
-  background: rgba(20, 26, 44, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 26, 44, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 22px;
   border-radius: 10px;
   position: relative;
@@ -634,8 +649,8 @@ body.admin-mode .card-quick-actions {
 .instruction-card h3 {
   font-family: var(--font-heading);
   color: var(--cyan-glow);
-  font-size: 1.15rem;
-  margin-bottom: 12px;
+  font-size: 1.2rem;
+  margin-bottom: 14px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -647,11 +662,12 @@ body.admin-mode .card-quick-actions {
 }
 
 .instruction-card li {
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   position: relative;
-  padding-left: 22px;
-  color: var(--text-muted);
-  font-size: 0.95rem;
+  padding-left: 24px;
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-weight: 600;
 }
 
 .instruction-card li::before {
@@ -660,15 +676,15 @@ body.admin-mode .card-quick-actions {
   left: 0;
   top: 0;
   color: var(--yellow-glow);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
 }
 
 /* Modals */
 .modal-overlay {
   position: fixed;
   top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(4, 6, 12, 0.85);
-  backdrop-filter: blur(8px);
+  background: rgba(4, 6, 12, 0.88);
+  backdrop-filter: blur(10px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -685,17 +701,17 @@ body.admin-mode .card-quick-actions {
 }
 
 .modal-content {
-  background: rgba(14, 18, 32, 0.95);
+  background: rgba(14, 18, 34, 0.98);
   border: 2px solid var(--cyan-glow);
-  box-shadow: 0 0 35px rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 40px rgba(0, 240, 255, 0.45);
   border-radius: 14px;
   width: 100%;
-  max-width: 580px;
+  max-width: 600px;
   max-height: 90vh;
   overflow-y: auto;
-  padding: 30px;
+  padding: 28px;
   position: relative;
-  transform: scale(0.9);
+  transform: scale(0.92);
   transition: transform 0.3s ease;
 }
 
@@ -707,23 +723,25 @@ body.admin-mode .card-quick-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 22px;
-  border-bottom: 1px solid rgba(0, 240, 255, 0.2);
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--cyan-glow);
   padding-bottom: 12px;
 }
 
 .modal-header h2 {
   font-family: var(--font-heading);
   color: var(--cyan-glow);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
+  font-weight: 900;
   text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .btn-close {
   background: transparent;
   border: none;
   color: var(--text-muted);
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   cursor: pointer;
   line-height: 1;
   transition: color 0.2s;
@@ -740,7 +758,8 @@ body.admin-mode .card-quick-actions {
 .form-group label {
   display: block;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 700;
   color: var(--text-main);
   margin-bottom: 6px;
   letter-spacing: 1px;
@@ -750,13 +769,14 @@ body.admin-mode .card-quick-actions {
 .form-group select,
 .form-group textarea {
   width: 100%;
-  background: rgba(7, 9, 14, 0.9);
-  border: 1px solid rgba(0, 240, 255, 0.25);
+  background: rgba(7, 9, 14, 0.95);
+  border: 1px solid rgba(0, 240, 255, 0.35);
   color: #fff;
   padding: 12px 14px;
   border-radius: 6px;
   font-family: var(--font-body);
-  font-size: 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
   outline: none;
 }
 
@@ -764,7 +784,123 @@ body.admin-mode .card-quick-actions {
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--cyan-glow);
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.4);
+}
+
+/* HIGH LEGIBILITY CART ITEMS LIST & PRICES */
+.cart-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-height: 350px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  padding-right: 6px;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(22, 30, 52, 0.95);
+  border: 1px solid rgba(0, 240, 255, 0.3);
+  padding: 12px 16px;
+  border-radius: 10px;
+  gap: 14px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+.cart-item-img {
+  width: 52px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1.5px solid var(--cyan-glow);
   box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+}
+
+.cart-item-info {
+  flex-grow: 1;
+}
+
+.cart-item-title {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 4px;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+}
+
+.cart-item-price {
+  color: var(--green-glow);
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 800;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+}
+
+.cart-qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cart-qty-controls span {
+  font-family: var(--font-mono);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #ffffff;
+  min-width: 20px;
+  text-align: center;
+}
+
+.btn-qty {
+  background: rgba(0, 240, 255, 0.2);
+  border: 1.5px solid var(--cyan-glow);
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 1.05rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.btn-qty:hover {
+  background: var(--cyan-glow);
+  color: #000;
+  box-shadow: 0 0 10px var(--cyan-glow);
+}
+
+.cart-total-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid var(--cyan-glow);
+  padding-top: 18px;
+  margin-top: 18px;
+}
+
+.cart-total-title {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: 1px;
+}
+
+.cart-total-amount {
+  font-family: var(--font-mono);
+  font-size: 1.7rem;
+  color: var(--green-glow);
+  font-weight: 900;
+  text-shadow: 0 0 14px rgba(0, 255, 136, 0.6);
 }
 
 /* Toast Notification System */
@@ -779,14 +915,15 @@ body.admin-mode .card-quick-actions {
 }
 
 .toast {
-  background: rgba(14, 18, 32, 0.95);
-  border: 1px solid var(--cyan-glow);
+  background: rgba(14, 18, 34, 0.98);
+  border: 1.5px solid var(--cyan-glow);
   color: #fff;
   padding: 12px 20px;
   border-radius: 8px;
   font-family: var(--font-heading);
-  font-size: 0.85rem;
-  box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.45);
   display: flex;
   align-items: center;
   gap: 10px;
@@ -803,100 +940,6 @@ body.admin-mode .card-quick-actions {
   to { opacity: 0; visibility: hidden; }
 }
 
-/* Cart / Cotizador Modal Table */
-.cart-items-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  max-height: 320px;
-  overflow-y: auto;
-  margin-bottom: 20px;
-  padding-right: 5px;
-}
-
-.cart-item {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background: rgba(22, 28, 48, 0.7);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  padding: 10px 14px;
-  border-radius: 8px;
-  gap: 12px;
-}
-
-.cart-item-img {
-  width: 45px;
-  height: 60px;
-  object-fit: cover;
-  border-radius: 4px;
-  border: 1px solid var(--cyan-glow);
-}
-
-.cart-item-info {
-  flex-grow: 1;
-}
-
-.cart-item-title {
-  font-family: var(--font-heading);
-  font-size: 0.9rem;
-  color: #fff;
-}
-
-.cart-item-price {
-  color: var(--green-glow);
-  font-family: var(--font-mono);
-  font-size: 0.9rem;
-}
-
-.cart-qty-controls {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn-qty {
-  background: rgba(0, 240, 255, 0.15);
-  border: 1px solid var(--cyan-glow);
-  color: #fff;
-  width: 26px;
-  height: 26px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 900;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.btn-qty:hover {
-  background: var(--cyan-glow);
-  color: #000;
-}
-
-.cart-total-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 2px solid var(--cyan-glow);
-  padding-top: 15px;
-  margin-top: 15px;
-}
-
-.cart-total-title {
-  font-family: var(--font-heading);
-  font-size: 1.1rem;
-  color: #fff;
-}
-
-.cart-total-amount {
-  font-family: var(--font-mono);
-  font-size: 1.5rem;
-  color: var(--green-glow);
-  font-weight: 900;
-  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
-}
-
 /* Footer */
 footer {
   background: rgba(7, 9, 14, 0.95);
@@ -907,7 +950,9 @@ footer {
   font-size: 0.9rem;
 }
 
-/* RESPONSIVE DESIGN & MOBILE OPTIMIZATIONS */
+/* ==========================================================================
+   RESPONSIVE DESIGN & MOBILE UNSTICKING HEADER FIX
+   ========================================================================== */
 @media (max-width: 1024px) {
   .catalog-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -917,23 +962,56 @@ footer {
   }
 }
 
+/* MOBILE FIX: UNSTICK HEADER & OPTIMIZE SCREEN SPACE */
 @media (max-width: 768px) {
-  .catalog-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+  header {
+    position: relative; /* Scrolls away naturally so 100% of phone screen shows the catalog! */
+    top: auto;
+    padding: 12px 0;
+  }
+
+  .header-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
   }
   
-  .header-wrapper {
-    flex-direction: column;
-    align-items: flex-start;
+  .brand {
+    gap: 8px;
+  }
+
+  .ps2-logo-badge {
+    font-size: 1.1rem;
+    padding: 4px 10px;
+  }
+
+  .brand-text h1 {
+    font-size: 1.25rem;
+  }
+
+  .brand-text p {
+    display: none; /* Hide subtitle on mobile to save vertical space */
   }
   
   .header-actions {
-    width: 100%;
-    justify-content: space-between;
+    gap: 6px;
+  }
+
+  .btn-neon {
+    padding: 7px 10px;
+    font-size: 0.72rem;
+    letter-spacing: 0.5px;
+  }
+
+  .payment-notice-banner {
+    font-size: 0.8rem;
+    padding: 7px 10px;
   }
 
   .controls-bar {
+    margin: 15px 0;
+    padding: 12px 14px;
     flex-direction: column;
     align-items: stretch;
   }
@@ -941,6 +1019,11 @@ footer {
   .filter-tabs {
     justify-content: center;
     width: 100%;
+  }
+
+  .tab-btn {
+    padding: 7px 12px;
+    font-size: 0.8rem;
   }
 
   .search-and-add {
@@ -952,17 +1035,37 @@ footer {
     width: 100%;
   }
 
-  .btn-neon {
-    width: 100%;
-    justify-content: center;
+  .catalog-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
   }
 
   .instructions-section {
-    padding: 20px;
+    padding: 20px 16px;
+  }
+
+  .modal-content {
+    padding: 20px 16px;
+  }
+
+  .cart-item {
+    padding: 10px 12px;
+  }
+
+  .cart-item-title {
+    font-size: 1rem;
+  }
+
+  .cart-item-price {
+    font-size: 0.95rem;
   }
 }
 
 @media (max-width: 480px) {
+  .brand-text h1 {
+    font-size: 1.1rem;
+  }
+
   .catalog-grid {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
@@ -973,7 +1076,7 @@ footer {
   }
 
   .game-title {
-    font-size: 0.9rem;
+    font-size: 0.95rem;
   }
 
   .game-desc {
@@ -981,11 +1084,11 @@ footer {
   }
 
   .game-price {
-    font-size: 0.95rem;
+    font-size: 1.05rem;
   }
 
   .btn-add-quote {
-    padding: 5px 8px;
+    padding: 6px 8px;
     font-size: 0.7rem;
   }
 }
