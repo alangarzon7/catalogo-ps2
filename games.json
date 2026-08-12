@@ -1,5 +1,45 @@
 [
   {
+    "id": "g_1786553454377",
+    "name": "Metal Slug 5",
+    "image": "https://tse2.mm.bing.net/th/id/OIP.5kJId3EXxvOyvwxbrM8uHQHaKh?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Quinto juego de la saga Metal Slug"
+  },
+  {
+    "id": "g_1786553418868",
+    "name": "Metal Slug 4",
+    "image": "https://th.bing.com/th/id/OIP.jm-Kct39guRyNISsHVEv6gHaKh?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Cuarto Juego de la saga Metal Slug"
+  },
+  {
+    "id": "g_1786553360136",
+    "name": "Metal Slug 3D",
+    "image": "https://tse2.mm.bing.net/th/id/OIP.aJvEsjO9Ll60IQlBRkY0mwHaKd?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "El juego transcurre en el año 2032, un año después de Metal Slug 5 y antes de Metal Slug 7"
+  },
+  {
+    "id": "g_1786553223446",
+    "name": "Battle Stadium DON",
+    "image": "https://tse1.mm.bing.net/th/id/OIP.z3v0OBuRhwtbO8gfKHz14wHaKg?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 5000,
+    "description": "El juego reúne a la lista de héroes y villanos icónicos del anime en un juego de plataformas de arena para 4 jugadores"
+  },
+  {
+    "id": "g_1786553159230",
+    "name": "Naruto Ultimate Ninja 5",
+    "image": "https://th.bing.com/th/id/R.27f67c4880b5d476dd9ae4612873a664?rik=%2fzGo5HPJN2EpvA&riu=http%3a%2f%2fsuperretro.com.au%2fcdn%2fshop%2fproducts%2fnaruto-shippuden-ultimate-ninja-5-ps2-108621-864356_1024x.jpg%3fv%3d1699481995&ehk=j2UoQfIsG77njeQoGLn5ZAJHaIeAjU4o31GLm4f1JIo%3d&risl=&pid=ImgRaw&r=0",
+    "category": "Los más pedidos",
+    "price": 4000,
+    "description": "El quinto y último título de la serie Ultimate Ninja, con más de 60 personajes jugables y contando los eventos desde el regreso de Naruto Uzumaki a la Aldea Oculta de la Hoja."
+  },
+  {
     "id": "g_1786320347847",
     "name": "PES 6",
     "image": "https://tse2.mm.bing.net/th/id/OIP.RTmo3enP1ySjhZk5dKVuigHaKl?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
