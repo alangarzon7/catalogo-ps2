@@ -1,5 +1,29 @@
 [
   {
+    "id": "g_1786559058078",
+    "name": "Capcom Classics Vol. 2",
+    "image": "https://now.estarland.com/images/products/48/27448/187175.jpg",
+    "category": "Todos los Juegos",
+    "price": 5000,
+    "description": "Compilación de juegos Capcom"
+  },
+  {
+    "id": "g_1786558990895",
+    "name": "Metal Slug Anthology",
+    "image": "https://tse1.mm.bing.net/th/id/OIP.U5O6m7jEd_7XgxftIVgJ4gHaKj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Los más pedidos",
+    "price": 6000,
+    "description": "Colección de la saga. Desde el 1 al 6, incluyendo Metal Slug X."
+  },
+  {
+    "id": "g_1786558871175",
+    "name": "Metal Slug 6",
+    "image": "https://th.bing.com/th/id/R.d5e2c3dec2be9d99124001a09a52713d?rik=ZQsm3rJxaCXbLA&pid=ImgRaw&r=0",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Sexto juego de la saga Metal Slug"
+  },
+  {
     "id": "g_1786553454377",
     "name": "Metal Slug 5",
     "image": "https://tse2.mm.bing.net/th/id/OIP.5kJId3EXxvOyvwxbrM8uHQHaKh?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
