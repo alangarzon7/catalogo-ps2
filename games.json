@@ -1,5 +1,21 @@
 [
   {
+    "id": "g_1786812095267",
+    "name": "The Sims 2",
+    "image": "https://www.lukiegames.com/assets/images/PS2/ps2_sims_2_p_g862ec.jpg",
+    "category": "Los más pedidos",
+    "price": 6000,
+    "description": "na nueva manera de jugar con la vida. Crea Sims, personaliza su mundo y desbloquea su futuro. Desde la gestión de su alimentación y moda a guiarlos a lo largo de su carrera profesional."
+  },
+  {
+    "id": "g_1786812017451",
+    "name": "The Sims Naufragos",
+    "image": "https://th.bing.com/th/id/R.2b53825b65f50b6377ce77811781dcad?rik=UEE1eyC1SBfnTA&pid=ImgRaw&r=0",
+    "category": "Todos los Juegos",
+    "price": 5000,
+    "description": "Ayuda a tus Sims a sobrevivir y prosperar en una isla inexplorada"
+  },
+  {
     "id": "g_1786560353553",
     "name": "Silent Hill 4 The Room",
     "image": "https://th.bing.com/th/id/OIP.8126KyyWqLFZja2Oee4MUgHaKg?r=0&o=7rm=3&rs=1&pid=ImgDetMain&o=7&rm=3",
