@@ -1,5 +1,13 @@
 [
   {
+    "id": "g_1787083368616",
+    "name": "Call Of Duty Finest Hour",
+    "image": "https://m.media-amazon.com/images/I/81BOKyet26L.jpg",
+    "category": "Todos los Juegos",
+    "price": 5000,
+    "description": "Es un videojuego de disparos en primera persona y spin-off del primer Call of Duty, que pone de escenario nuevamente la Segunda Guerra Mundial."
+  },
+  {
     "id": "g_1787083269771",
     "name": "Call Of Duty World at War",
     "image": "https://th.bing.com/th/id/R.6faa68ea3160ebd1e19a5da015e13dec?rik=%2f7NVfotP4UOG%2fw&pid=ImgRaw&r=0",
@@ -9,15 +17,15 @@
   },
   {
     "id": "g_1787083078682",
-    "name": "Call of Duty 2 Big Red One",
+    "name": "Call Of Duty 2 Big Red One",
     "image": "https://th.bing.com/th/id/R.daea95ba76bf40bbe9db72d63bfa5f27?rik=Qj7geA7h5Ji2Vg&riu=http%3a%2f%2fwww.mobygames.com%2fimages%2fcovers%2fl%2f66570-call-of-duty-2-big-red-one-playstation-2-front-cover.jpg&ehk=88TMAQmuYSsm3sNN26VMK%2f1sCkuZ4lLQndRCKfVmmgY%3d&risl=&pid=ImgRaw&r=0",
     "category": "Todos los Juegos",
-    "price": 4000,
+    "price": 5000,
     "description": "El jugador puede encarnar a cuatro soldados diferentes, uno en el Ejército de los Estados Unidos, otro en la Union Sovietica y dos más en el Ejército Británico. El título está compuesto por cuatro campañas"
   },
   {
     "id": "g_1787083010546",
-    "name": "Call of Duty",
+    "name": "Call Of Duty 3",
     "image": "https://www.thevideogamecompany.com/cdn/shop/products/call-of-duty-3-sony-playstation-2-ps2-047875816336-cover-art.jpg?v=1656646760&width=1200",
     "category": "Todos los Juegos",
     "price": 5000,
