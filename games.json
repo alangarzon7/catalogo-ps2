@@ -1,5 +1,29 @@
 [
   {
+    "id": "g_1787349284244",
+    "name": "Tony Hawk’s Underground 2",
+    "image": "https://tse2.mm.bing.net/th/id/OIP.EaTMUtRNfGAJSBbZVpqQxAHaKg?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Secuestrado para participar en el caótico World Destruction Tour, competirás dividiendo a los mejores patinadores del mundo entre el equipo de Tony Hawk y el de Bam Margera"
+  },
+  {
+    "id": "g_1787349227172",
+    "name": "Tony Hawk’s American Wasteland",
+    "image": "https://tse2.mm.bing.net/th/id/OIP.VrUZj7ljO8R8bP9qFVXMJgHaKj?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Recién llegado a Los Ángeles con poco más que tu patineta, deberás abrirte paso en la escena urbana para ayudar a un grupo de skaters a construir el skatepark definitivo"
+  },
+  {
+    "id": "g_1787349157431",
+    "name": "Tony Hawk’s Underground",
+    "image": "https://tse2.mm.bing.net/th/id/OIP.2G2EnxcysArzLurf5SgqFwHaKa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+    "category": "Todos los Juegos",
+    "price": 4000,
+    "description": "Deja de controlar a leyendas consagradas y crea a tu propio patinador desde cero para ascender desde las calles de Nueva Jersey hasta la élite del skate profesional."
+  },
+  {
     "id": "g_1787083586753",
     "name": "Battlefield 2",
     "image": "https://tse1.mm.bing.net/th/id/OIP.LGvIlnJed4neyHwimHYfmQHaKe?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
