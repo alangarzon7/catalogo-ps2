@@ -47,9 +47,67 @@
   <!-- Contenido Principal -->
   <main class="container" id="catalog-section">
 
-    <!-- Barra de Controles (Secciones, Buscador y Botón Agregar Juego 1 a 1 en Modo Admin) -->
+    <!-- Insignias de Confianza y Calidad Gamer -->
+    <div class="trust-features-grid">
+      <div class="trust-feature-item">
+        <span class="trust-icon">📀</span>
+        <div class="trust-text">
+          <strong>DVDs Nuevos</strong>
+          <span>Grabados a 4x para láser</span>
+        </div>
+      </div>
+      <div class="trust-feature-item">
+        <span class="trust-icon">🕹️</span>
+        <div class="trust-text">
+          <strong>Testeados 1 a 1</strong>
+          <span>En consola PS2 real</span>
+        </div>
+      </div>
+      <div class="trust-feature-item">
+        <span class="trust-icon">🤝</span>
+        <div class="trust-text">
+          <strong>Pago al Recibir</strong>
+          <span>Efectivo o Transferencia</span>
+        </div>
+      </div>
+      <div class="trust-feature-item">
+        <span class="trust-icon">🚚</span>
+        <div class="trust-text">
+          <strong>Envíos a Domicilio</strong>
+          <span>A partir de 5 juegos</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sección Carrusel / Slider: Los Más Pedidos ($4.000) -->
+    <section class="slider-section" id="slider-mas-pedidos" aria-label="Juegos Más Pedidos">
+      <div class="slider-header">
+        <div class="slider-title-wrapper">
+          <span class="slider-title-bar"></span>
+          <h2 class="slider-title">Los más pedidos</h2>
+          <span class="slider-price-chip">$4.000 c/u</span>
+        </div>
+        <div class="slider-nav-arrows">
+          <button id="slider-prev-btn" class="slider-arrow-btn" onclick="scrollSlider(-1)" aria-label="Juegos anteriores" title="Desplazar a la izquierda">
+            ‹
+          </button>
+          <button id="slider-next-btn" class="slider-arrow-btn" onclick="scrollSlider(1)" aria-label="Juegos siguientes" title="Desplazar a la derecha">
+            ›
+          </button>
+        </div>
+      </div>
+
+      <!-- Pista horizontal deslizable -->
+      <div class="slider-track-container">
+        <div id="slider-track" class="slider-track" tabindex="0" role="region" aria-label="Carrusel de juegos más pedidos">
+          <!-- Tarjetas insertadas dinámicamente -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Barra de Controles (Secciones, Buscador, Ordenador y Botón Agregar Juego) -->
     <div class="controls-bar">
-      <!-- 3 Secciones Requeridas -->
+      <!-- 4 Pestañas: Todos, Los más pedidos, MODS y Favoritos -->
       <div class="filter-tabs">
         <button class="tab-btn active" data-category="Todos los Juegos" onclick="selectTab('Todos los Juegos')">
           🎮 Todos los Juegos
@@ -60,10 +118,20 @@
         <button class="tab-btn" data-category="MODS" onclick="selectTab('MODS')">
           ⚡ MODS
         </button>
+        <button class="tab-btn btn-favs" data-category="Favoritos" onclick="selectTab('Favoritos')" title="Ver mis juegos favoritos">
+          ❤️ Favoritos <span id="favs-count-badge" class="favs-badge">0</span>
+        </button>
       </div>
 
-      <!-- Buscador y Botón para Agregar Juegos 1 a 1 -->
+      <!-- Buscador, Ordenador y Botón para Agregar Juegos 1 a 1 -->
       <div class="search-and-add">
+        <div class="sort-box">
+          <select id="sort-select" onchange="handleSortChange(this.value)" aria-label="Ordenar catálogo">
+            <option value="default">↕️ Orden: Catálogo</option>
+            <option value="az">🔤 Nombre: A - Z</option>
+            <option value="za">🔤 Nombre: Z - A</option>
+          </select>
+        </div>
         <div class="search-box">
           <span>🔍</span>
           <input type="text" id="search-input" placeholder="Buscar juego..." autocomplete="off">
@@ -142,6 +210,46 @@
 
   </main>
 
+  <!-- Modal de Vista Rápida del Juego (Quick View) -->
+  <div id="quickview-modal" class="modal-overlay">
+    <div class="modal-content modal-quickview">
+      <div class="modal-header">
+        <h2 id="qv-header-title">🎮 Ficha del Juego</h2>
+        <button class="btn-close" onclick="closeQuickviewModal()">&times;</button>
+      </div>
+      <div class="quickview-grid">
+        <div class="quickview-cover-wrap">
+          <img id="qv-image" src="" alt="Carátula" class="quickview-cover">
+          <span id="qv-badge" class="game-badge"></span>
+        </div>
+        <div class="quickview-info">
+          <h2 id="qv-title" class="quickview-title"></h2>
+          <div class="quickview-meta">
+            <span class="quickview-price" id="qv-price"></span>
+            <span class="quickview-format">📀 Formato DVD PlayStation 2</span>
+          </div>
+          <div class="quickview-desc-box">
+            <h4>Detalles & Sinopsis:</h4>
+            <p id="qv-desc"></p>
+          </div>
+          <div class="quickview-highlights">
+            <div class="highlight-chip">✅ Compatible con chip de destraba</div>
+            <div class="highlight-chip">💿 Grabado a baja velocidad (4x)</div>
+            <div class="highlight-chip">🤝 Pago contra entrega</div>
+          </div>
+          <div class="quickview-actions">
+            <button id="qv-add-btn" class="btn-neon btn-green" style="flex: 1; justify-content: center; padding: 12px;">
+              🛒 Agregar al Carrito
+            </button>
+            <button id="qv-fav-btn" class="btn-neon btn-magenta" style="justify-content: center; padding: 12px;">
+              ❤️ Favorito
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- Modal para Agregar Juegos (1 a 1 en Modo Admin) -->
   <div id="add-game-modal" class="modal-overlay">
     <div class="modal-content">
@@ -163,7 +271,7 @@
         </div>
         <div class="form-group">
           <label for="game-category">Sección / Categoría *</label>
-          <select id="game-category" required>
+          <select id="game-category" required onchange="handleCategoryPriceDefault('game-category', 'game-price')">
             <option value="Todos los Juegos">Todos los Juegos</option>
             <option value="Los más pedidos">Los más pedidos</option>
             <option value="MODS">MODS</option>
@@ -171,7 +279,7 @@
         </div>
         <div class="form-group">
           <label for="game-price">Precio ($ ARS) *</label>
-          <input type="number" id="game-price" min="0" value="4000" required>
+          <input type="number" id="game-price" min="0" value="3500" required>
         </div>
         <div class="form-group">
           <label for="game-desc">Descripción o Detalles del Juego</label>
@@ -207,7 +315,7 @@
         </div>
         <div class="form-group">
           <label for="edit-game-category">Sección / Categoría *</label>
-          <select id="edit-game-category" required>
+          <select id="edit-game-category" required onchange="handleCategoryPriceDefault('edit-game-category', 'edit-game-price')">
             <option value="Todos los Juegos">Todos los Juegos</option>
             <option value="Los más pedidos">Los más pedidos</option>
             <option value="MODS">MODS</option>
@@ -215,7 +323,7 @@
         </div>
         <div class="form-group">
           <label for="edit-game-price">Precio ($ ARS) *</label>
-          <input type="number" id="edit-game-price" min="0" value="4000" required>
+          <input type="number" id="edit-game-price" min="0" value="3500" required>
         </div>
         <div class="form-group">
           <label for="edit-game-desc">Descripción o Detalles del Juego</label>
@@ -241,7 +349,17 @@
       <div class="modal-payment-alert">
         ⚠️ <strong>RECUERDA:</strong> LOS JUEGOS SE PAGAN AL MOMENTO DE LA ENTREGA.
       </div>
-      
+
+      <!-- Barra de Progreso de Envío a Domicilio (Meta: 5 juegos) -->
+      <div id="cart-shipping-progress" class="cart-shipping-progress">
+        <div class="shipping-progress-text" id="shipping-progress-text">
+          🚚 Agrega 5 juegos para calificar para <strong>ENVÍO A DOMICILIO</strong>
+        </div>
+        <div class="shipping-progress-bar-bg">
+          <div class="shipping-progress-bar-fill" id="shipping-progress-bar-fill" style="width: 0%;"></div>
+        </div>
+      </div>
+
       <div id="cart-items-list" class="cart-items-list">
         <!-- Ítems agregados por JavaScript -->
       </div>
@@ -261,6 +379,18 @@
       </div>
     </div>
   </div>
+
+  <!-- Botón Flotante Sticky de Carrito -->
+  <button id="floating-cart-btn" class="floating-cart-btn" onclick="openCartModal()" aria-label="Abrir Carrito" title="Ver Carrito de Compras">
+    <div class="floating-cart-icon-wrap">
+      🛒
+      <span id="floating-cart-count" class="floating-cart-count">0</span>
+    </div>
+    <div class="floating-cart-info">
+      <span class="floating-cart-title">Mi Carrito</span>
+      <span id="floating-cart-total" class="floating-cart-total">$0</span>
+    </div>
+  </button>
 
   <!-- Pie de Página -->
   <footer>

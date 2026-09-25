@@ -12,6 +12,13 @@ let searchQuery = "";
 let currentPage = 1;
 let cart = [];
 let adminModeActive = localStorage.getItem('ps2_admin_mode_active') === 'true';
+let userFavorites = [];
+try {
+  userFavorites = JSON.parse(localStorage.getItem('ps2_user_favorites') || '[]');
+} catch(e) {
+  userFavorites = [];
+}
+let currentSort = 'default'; // 'default', 'az', 'za'
 
 // Default PS2 Games Catalog Initial Database
 const defaultGamesList = [
@@ -20,14 +27,14 @@ const defaultGamesList = [
     name: "Guitar Hero III",
     image: "https://archive.org/download/gh-3-c_202503/OIPfixed.jpeg",
     category: "Todos los Juegos",
-    price: 5000,
+    price: 3500,
     description: "Juego en DVD para PS2."
   },
   {
     id: "g1",
     name: "Dragon Ball Z: Budokai Tenkaichi 3 [Latino MOD]",
     category: "MODS",
-    price: 6000,
+    price: 3500,
     image: "https://images.launchbox-app.com/76fe49ea-b771-4758-b09d-7416ffa8a5d4.png",
     description: "Versión MOD definitiva en DVD con voces en Español Latino originales (Audio Latino), más de 160 personajes."
   },
@@ -35,7 +42,7 @@ const defaultGamesList = [
     id: "g2",
     name: "Grand Theft Auto: San Andreas",
     category: "Los más pedidos",
-    price: 6000,
+    price: 4000,
     image: "https://www.thevideogamecompany.com/cdn/shop/products/grand-theft-auto-gta-san-andreas-sony-playstation-2-ps2-710425274107-cover-art.jpg?v=1656648049&width=1267",
     description: "El rey indiscutible de PS2. Explora todo el estado de San Andreas en la piel de CJ."
   },
@@ -43,7 +50,7 @@ const defaultGamesList = [
     id: "g3",
     name: "God of War II",
     category: "Los más pedidos",
-    price: 5000,
+    price: 4000,
     image: "https://i5.walmartimages.com/asr/3ac8e0b5-76d1-4995-9570-d431696221eb_1.7ac304ae3667075f6348a7a065044d54.jpeg",
     description: "Kratos desafía a los Dioses del Olimpo en una épica aventura de acción y combate sangriento."
   },
@@ -51,7 +58,7 @@ const defaultGamesList = [
     id: "g4",
     name: "Resident Evil 4",
     category: "Los más pedidos",
-    price: 6000,
+    price: 4000,
     image: "https://cdn.mobygames.com/covers/4480917-resident-evil-4-playstation-2-front-cover.jpg",
     description: "Leon S. Kennedy debe rescatar a la hija del presidente en un pueblo hostil de Europa."
   },
@@ -59,7 +66,7 @@ const defaultGamesList = [
     id: "g5",
     name: "The Simpsons Hit & Run LATINO",
     category: "MODS",
-    price: 6000,
+    price: 3500,
     image: "https://www.lukiegames.com/assets/images/PS2/ps2_simpsons_hit_and_run-110214.jpg",
     description: "La obra maestra de Los Simpson doblada al Español Latino por los actores de voz originales."
   },
@@ -67,7 +74,7 @@ const defaultGamesList = [
     id: "g7",
     name: "Need for Speed: Most Wanted",
     category: "Todos los Juegos",
-    price: 4000,
+    price: 3500,
     image: "https://tse1.mm.bing.net/th/id/OIP.gDP7QBdqR9D0_GP68jQcagHaKG?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Carreras callejeras ilegales, persecuciones policiales extremas y la codiciada Blacklist."
   },
@@ -75,7 +82,7 @@ const defaultGamesList = [
     id: "g8",
     name: "Shadow of the Colossus",
     category: "Los más pedidos",
-    price: 5000,
+    price: 4000,
     image: "https://tse4.mm.bing.net/th/id/OIP.MZpKo4Yu9kX0AW1ZeJ7t8AHaJ-?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Enfrenta a 16 gigantescos colosos en una tierra prohibida para devolver la vida a tu amada."
   },
@@ -83,7 +90,7 @@ const defaultGamesList = [
     id: "g9",
     name: "Guitar Hero II",
     category: "Todos los Juegos",
-    price: 4000,
+    price: 3500,
     image: "https://www.lukiegames.com/assets/images/PS2/ps2_guitar_hero_ii-110214.jpg",
     description: "Demuestra tus habilidades de rockstar con los mejores clásicos del rock y metal mundial."
   },
@@ -107,7 +114,7 @@ const defaultGamesList = [
     id: "g12",
     name: "Def Jam: Fight for NY",
     category: "Los más pedidos",
-    price: 5000,
+    price: 4000,
     image: "https://tse3.mm.bing.net/th/id/OIP.NknVwnU8rsaHJySt-U2URwHaMu?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Peleas callejeras épicas entre raperos legendarios de Nueva York."
   },
@@ -115,7 +122,7 @@ const defaultGamesList = [
     id: "g13",
     name: "BLACK",
     category: "Todos los Juegos",
-    price: 4000,
+    price: 3500,
     image: "https://tse1.mm.bing.net/th/id/OIP.qhT5OCK-ve0ydTKwy0NZ3wHaKU?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "El shooter en primera persona con la mejor calidad gráfica y explosiones de la consola."
   },
@@ -123,7 +130,7 @@ const defaultGamesList = [
     id: "g14",
     name: "Metal Gear Solid 3: Snake Eater",
     category: "Todos los Juegos",
-    price: 4000,
+    price: 3500,
     image: "https://tse2.mm.bing.net/th/id/OIP.8GPNdqWS3Hy1LdkUnOWGNwHaKh?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Supervivencia y sigilo en la jungla soviética durante la Guerra Fría."
   },
@@ -139,7 +146,7 @@ const defaultGamesList = [
     id: "g16",
     name: "GTA Argentina MOD (Barrio Fino)",
     category: "MODS",
-    price: 4000,
+    price: 3500,
     image: "https://tse2.mm.bing.net/th/id/OIP._E3fSnxt9a4INC3I8Ac2ogHaE9?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "MOD argentino de GTA con colectivos, autos locales, música cumbia y graffitis autóctonos."
   },
@@ -147,7 +154,7 @@ const defaultGamesList = [
     id: "g17",
     name: "Bully",
     category: "Todos los Juegos",
-    price: 6000,
+    price: 3500,
     image: "https://tse2.mm.bing.net/th/id/OIP.BLhdOI7ynJhgKMJntZAKkQHaKp?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Encarna a Jimmy Hopkins para sobrevivir a la escuela preparatoria Bullworth Academy."
   },
@@ -163,7 +170,7 @@ const defaultGamesList = [
     id: "g19",
     name: "God of War I",
     category: "MODS",
-    price: 4000,
+    price: 3500,
     image: "https://th.bing.com/th/id/R.37b2d11a4457e35debae01428cdf2f74?rik=ccullnotKdwfUg&riu=http%3a%2f%2f2.bp.blogspot.com%2f-1pQo2CHmL2c%2fVIOlt_d1J_I%2fAAAAAAAAAJU%2fuF8Z9iaBQfY%2fs1600%2fvv.jpg&ehk=FELy08OeV3UgAL6A3URkPWtvIcWCR4IlXAY4ObQPx1s%3d&risl=&pid=ImgRaw&r=0",
     description: "El inicio de la leyenda de Kratos totalmente doblado al español castellano."
   },
@@ -171,7 +178,7 @@ const defaultGamesList = [
     id: "g20",
     name: "Need for Speed: Underground 2",
     category: "Los más pedidos",
-    price: 5000,
+    price: 4000,
     image: "https://tse3.mm.bing.net/th/id/OIP.sXaAPuYueEsqGVOW9A_oBgHaKl?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
     description: "Tuning extremo y libertad total para conducir por la ciudad nocturna de Bayview."
   }
@@ -282,7 +289,9 @@ async function initData() {
 
   updateAdminUI();
   updateCartBadge();
+  updateFavsBadge();
   renderCatalog();
+  renderSliderMasPedidos();
 }
 
 // Save catalog games to localStorage
@@ -413,14 +422,31 @@ function sanitizeImageUrl(url, title) {
   return cleanUrl;
 }
 
-// Filter games based on section tab & search query
+// Filter games based on section tab, search query & sort order
 function getFilteredGames() {
-  return catalogGames.filter(game => {
-    const matchCategory = (currentCategory === "Todos los Juegos") || (game.category === currentCategory);
+  let list = catalogGames.filter(game => {
+    let matchCategory = false;
+    if (currentCategory === "Todos los Juegos") {
+      matchCategory = true;
+    } else if (currentCategory === "Favoritos") {
+      matchCategory = isFavorite(game.id);
+    } else {
+      matchCategory = (game.category === currentCategory);
+    }
+
     const matchSearch = game.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
                         (game.description && game.description.toLowerCase().includes(searchQuery.toLowerCase()));
     return matchCategory && matchSearch;
   });
+
+  // Apply sorting: A-Z / Z-A / Default (Catálogo)
+  if (currentSort === 'az') {
+    list.sort((a, b) => a.name.localeCompare(b.name, 'es', { sensitivity: 'base' }));
+  } else if (currentSort === 'za') {
+    list.sort((a, b) => b.name.localeCompare(a.name, 'es', { sensitivity: 'base' }));
+  }
+
+  return list;
 }
 
 // Render Catalog Grid
@@ -442,14 +468,20 @@ function renderCatalog() {
   const pageItems = filtered.slice(startIndex, startIndex + ITEMS_PER_PAGE);
 
   if (countLabel) {
-    countLabel.textContent = `Mostrando ${filtered.length} juegos (Página ${currentPage} de ${totalPages})`;
+    const sectionName = currentCategory === 'Favoritos' ? 'en Favoritos' : (currentCategory === 'Todos los Juegos' ? 'en catálogo' : `en ${currentCategory}`);
+    countLabel.textContent = `Mostrando ${filtered.length} juegos ${sectionName} (Página ${currentPage} de ${totalPages})`;
   }
 
   if (pageItems.length === 0) {
+    const isFavTab = currentCategory === 'Favoritos';
     gridContainer.innerHTML = `
       <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--text-muted);">
-        <h3 style="font-family: var(--font-heading); color: var(--magenta-glow); font-size: 1.3rem;">¡No se encontraron juegos!</h3>
-        <p style="margin-top: 8px;">Intenta cambiar la búsqueda o ingresa a Modo Admin para agregar juegos.</p>
+        <h3 style="font-family: var(--font-heading); color: var(--magenta-glow); font-size: 1.3rem;">
+          ${isFavTab ? '¡No tienes juegos en Favoritos todavía!' : '¡No se encontraron juegos!'}
+        </h3>
+        <p style="margin-top: 8px;">
+          ${isFavTab ? 'Toca el corazón ❤️ en la portada de cualquier juego para armar tu lista de preferidos.' : 'Intenta cambiar la búsqueda o ingresa a Modo Admin para agregar juegos.'}
+        </p>
       </div>
     `;
     paginationContainer.innerHTML = '';
@@ -463,23 +495,27 @@ function renderCatalog() {
     if (game.category === 'Los más pedidos') badgeClass += ' badge-pedidos';
 
     const imgSrc = sanitizeImageUrl(game.image, game.name);
+    const isFav = isFavorite(game.id);
 
     return `
       <div class="game-card" onmouseenter="try{playHoverSound();}catch(e){}">
-        <div class="card-image-wrapper">
+        <div class="card-image-wrapper" onclick="openQuickviewModal('${game.id}')" title="Ver detalles y carátula de ${game.name}">
           <img src="${imgSrc}" alt="${game.name}" onerror="this.onerror=null; this.src='${getSVGPlaceholder(game.name)}';">
+          <button class="btn-card-fav ${isFav ? 'active' : ''}" onclick="toggleFavorite('${game.id}', event)" title="${isFav ? 'Quitar de favoritos' : 'Guardar en favoritos'}">
+            ${isFav ? '❤️' : '🤍'}
+          </button>
           <div class="card-quick-actions">
-            <button class="btn-card-action" onclick="openEditGameModal('${game.id}')" title="Editar juego">✏️</button>
-            <button class="btn-card-action delete" onclick="deleteGame('${game.id}')" title="Eliminar juego">🗑️</button>
+            <button class="btn-card-action" onclick="openEditGameModal('${game.id}'); event.stopPropagation();" title="Editar juego">✏️</button>
+            <button class="btn-card-action delete" onclick="deleteGame('${game.id}'); event.stopPropagation();" title="Eliminar juego">🗑️</button>
           </div>
           <span class="${badgeClass}">${game.category}</span>
         </div>
         <div class="card-content">
-          <h3 class="game-title" title="${game.name}">${game.name}</h3>
+          <h3 class="game-title" onclick="openQuickviewModal('${game.id}')" title="${game.name}">${game.name}</h3>
           <p class="game-desc">${game.description || 'Juego en formato DVD para consola Playstation 2.'}</p>
           <div class="card-footer">
-            <span class="game-price">$${(game.price || 4000).toLocaleString('es-AR')}</span>
-            <button class="btn-add-quote" onclick="addToCart('${game.id}')">
+            <span class="game-price">$${(game.price || 3500).toLocaleString('es-AR')}</span>
+            <button class="btn-add-quote" onclick="addToCart('${game.id}'); event.stopPropagation();">
               🛒 Agregar al carrito
             </button>
           </div>
@@ -524,6 +560,121 @@ function renderPagination(totalPages) {
   container.innerHTML = html;
 }
 
+// ===================================================
+// HORIZONTAL CAROUSEL / SLIDER: LOS MÁS PEDIDOS ($4.000)
+// ===================================================
+function renderSliderMasPedidos() {
+  const track = document.getElementById('slider-track');
+  if (!track) return;
+
+  const masPedidos = catalogGames.filter(g => g.category === 'Los más pedidos');
+
+  if (masPedidos.length === 0) {
+    track.innerHTML = `<p style="color: var(--text-muted); padding: 20px;">No hay juegos en la sección de Los más pedidos.</p>`;
+    return;
+  }
+
+  track.innerHTML = masPedidos.map(game => {
+    const imgSrc = sanitizeImageUrl(game.image, game.name);
+    const isFav = isFavorite(game.id);
+    return `
+      <div class="slider-card" onmouseenter="try{playHoverSound();}catch(e){}">
+        <div class="slider-card-img-wrap" onclick="openQuickviewModal('${game.id}')" title="Ver detalles y carátula de ${game.name}">
+          <img src="${imgSrc}" alt="${game.name}" loading="lazy" onerror="this.onerror=null; this.src='${getSVGPlaceholder(game.name)}';">
+          <span class="slider-card-tag">🔥 MÁS PEDIDOS</span>
+          <button class="btn-card-fav ${isFav ? 'active' : ''}" onclick="toggleFavorite('${game.id}', event)" title="${isFav ? 'Quitar de favoritos' : 'Guardar en favoritos'}">
+            ${isFav ? '❤️' : '🤍'}
+          </button>
+        </div>
+        <div class="slider-card-body">
+          <h3 class="slider-card-title" onclick="openQuickviewModal('${game.id}')" title="${game.name}">${game.name}</h3>
+          <div class="slider-card-footer">
+            <span class="slider-card-price">$${(game.price || 4000).toLocaleString('es-AR')}</span>
+            <button class="slider-card-btn" onclick="addToCart('${game.id}'); event.stopPropagation();" title="Agregar al carrito">
+              🛒 Agregar
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  updateSliderNavButtons();
+  initSliderDrag();
+}
+
+function scrollSlider(direction) {
+  try { playClickSound(); } catch(e){}
+  const track = document.getElementById('slider-track');
+  if (!track) return;
+
+  const scrollStep = Math.max(200, Math.floor(track.clientWidth * 0.75));
+  track.scrollBy({ left: direction * scrollStep, behavior: 'smooth' });
+
+  setTimeout(updateSliderNavButtons, 350);
+}
+
+function updateSliderNavButtons() {
+  const track = document.getElementById('slider-track');
+  const prevBtn = document.getElementById('slider-prev-btn');
+  const nextBtn = document.getElementById('slider-next-btn');
+  if (!track || !prevBtn || !nextBtn) return;
+
+  const atStart = track.scrollLeft <= 10;
+  const atEnd = track.scrollLeft + track.clientWidth >= track.scrollWidth - 10;
+
+  prevBtn.disabled = atStart;
+  nextBtn.disabled = atEnd;
+}
+
+let sliderDragState = { isDown: false, startX: 0, scrollLeft: 0 };
+function initSliderDrag() {
+  const track = document.getElementById('slider-track');
+  if (!track || track.dataset.dragInitialized) return;
+  track.dataset.dragInitialized = 'true';
+
+  track.addEventListener('scroll', updateSliderNavButtons, { passive: true });
+
+  track.addEventListener('mousedown', (e) => {
+    if (e.target.closest('button')) return;
+    sliderDragState.isDown = true;
+    track.classList.add('dragging');
+    sliderDragState.startX = e.pageX - track.offsetLeft;
+    sliderDragState.scrollLeft = track.scrollLeft;
+  });
+
+  track.addEventListener('mouseleave', () => {
+    sliderDragState.isDown = false;
+    track.classList.remove('dragging');
+  });
+
+  track.addEventListener('mouseup', () => {
+    sliderDragState.isDown = false;
+    track.classList.remove('dragging');
+    updateSliderNavButtons();
+  });
+
+  track.addEventListener('mousemove', (e) => {
+    if (!sliderDragState.isDown) return;
+    e.preventDefault();
+    const x = e.pageX - track.offsetLeft;
+    const walk = (x - sliderDragState.startX) * 1.5;
+    track.scrollLeft = sliderDragState.scrollLeft - walk;
+  });
+}
+
+function handleCategoryPriceDefault(catSelectId, priceInputId) {
+  const catSelect = document.getElementById(catSelectId);
+  const priceInput = document.getElementById(priceInputId);
+  if (!catSelect || !priceInput) return;
+
+  if (catSelect.value === 'Los más pedidos') {
+    priceInput.value = 4000;
+  } else {
+    priceInput.value = 3500;
+  }
+}
+
 function goToPage(page) {
   try { playClickSound(); } catch(e){}
   currentPage = page;
@@ -554,10 +705,126 @@ function handleSearch(val) {
   renderCatalog();
 }
 
+// Sort Selection Handler
+function handleSortChange(val) {
+  try { playClickSound(); } catch(e){}
+  currentSort = val;
+  currentPage = 1;
+  renderCatalog();
+}
+
+// User Favorites System
+function isFavorite(gameId) {
+  return userFavorites.includes(gameId);
+}
+
+function toggleFavorite(gameId, event) {
+  if (event) {
+    event.stopPropagation();
+  }
+  try { playClickSound(); } catch(e){}
+
+  const idx = userFavorites.indexOf(gameId);
+  const game = catalogGames.find(g => g.id === gameId);
+  const gameName = game ? game.name : 'Juego';
+
+  if (idx > -1) {
+    userFavorites.splice(idx, 1);
+    showToast(`🤍 "${gameName}" quitado de Favoritos`);
+  } else {
+    userFavorites.push(gameId);
+    showToast(`❤️ "${gameName}" guardado en Favoritos`);
+  }
+
+  try {
+    localStorage.setItem('ps2_user_favorites', JSON.stringify(userFavorites));
+  } catch(e){}
+
+  updateFavsBadge();
+  updateQuickviewFavBtn(gameId);
+  renderCatalog();
+  renderSliderMasPedidos();
+}
+
+function updateFavsBadge() {
+  const badge = document.getElementById('favs-count-badge');
+  if (badge) {
+    badge.textContent = userFavorites.length;
+  }
+}
+
+// Quick View Modal
+function openQuickviewModal(gameId) {
+  try { playModalSound(); } catch(e){}
+  const game = catalogGames.find(g => g.id === gameId);
+  if (!game) return;
+
+  const modal = document.getElementById('quickview-modal');
+  if (!modal) return;
+
+  const qvImage = document.getElementById('qv-image');
+  const qvBadge = document.getElementById('qv-badge');
+  const qvTitle = document.getElementById('qv-title');
+  const qvPrice = document.getElementById('qv-price');
+  const qvDesc = document.getElementById('qv-desc');
+  const qvAddBtn = document.getElementById('qv-add-btn');
+
+  if (qvImage) {
+    qvImage.src = sanitizeImageUrl(game.image, game.name);
+    qvImage.alt = game.name;
+    qvImage.onerror = () => { qvImage.src = getSVGPlaceholder(game.name); };
+  }
+
+  if (qvBadge) {
+    qvBadge.textContent = game.category || 'Todos los Juegos';
+    qvBadge.className = 'game-badge';
+    if (game.category === 'MODS') qvBadge.classList.add('badge-mods');
+    if (game.category === 'Los más pedidos') qvBadge.classList.add('badge-pedidos');
+  }
+
+  if (qvTitle) qvTitle.textContent = game.name;
+  if (qvPrice) qvPrice.textContent = `$${(game.price || 3500).toLocaleString('es-AR')}`;
+  if (qvDesc) {
+    qvDesc.textContent = game.description || 'Juego en formato físico DVD para consola Sony PlayStation 2. Grabado y probado individualmente para garantizar su óptimo rendimiento en consolas con chip.';
+  }
+
+  if (qvAddBtn) {
+    qvAddBtn.onclick = () => {
+      addToCart(game.id);
+      closeQuickviewModal();
+    };
+  }
+
+  updateQuickviewFavBtn(game.id);
+
+  modal.classList.add('active');
+}
+
+function updateQuickviewFavBtn(gameId) {
+  const qvFavBtn = document.getElementById('qv-fav-btn');
+  if (!qvFavBtn) return;
+  const isFav = isFavorite(gameId);
+  qvFavBtn.innerHTML = isFav ? '❤️ En Favoritos' : '🤍 Guardar en Favoritos';
+  qvFavBtn.onclick = (e) => {
+    toggleFavorite(gameId, e);
+  };
+}
+
+function closeQuickviewModal() {
+  try { playClickSound(); } catch(e){}
+  const modal = document.getElementById('quickview-modal');
+  if (modal) modal.classList.remove('active');
+}
+
 // Add New Game Form Modal Functions
 function openAddGameModal() {
   if (!adminModeActive) return;
   try { playModalSound(); } catch(e){}
+  const catSelect = document.getElementById('game-category');
+  const priceInput = document.getElementById('game-price');
+  if (catSelect && priceInput) {
+    priceInput.value = catSelect.value === 'Los más pedidos' ? 4000 : 3500;
+  }
   const modal = document.getElementById('add-game-modal');
   if (modal) modal.classList.add('active');
 }
@@ -586,7 +853,7 @@ function saveNewGame(event) {
     name: nameInput.value.trim(),
     image: sanitizeImageUrl(rawImage, nameInput.value.trim()),
     category: categorySelect ? categorySelect.value : "Todos los Juegos",
-    price: priceInput ? (parseInt(priceInput.value) || 4000) : 4000,
+    price: priceInput ? (parseInt(priceInput.value) || 3500) : 3500,
     description: descInput ? (descInput.value.trim() || 'Juego en DVD para PS2.') : 'Juego en DVD para PS2.'
   };
 
@@ -605,6 +872,7 @@ function saveNewGame(event) {
   });
 
   renderCatalog();
+  renderSliderMasPedidos();
   showToast(`✨ Juego "${newGame.name}" agregado. Presiona "☁️ Publicar a Clientes" para subir a GitHub.`);
   try { playAddCartSound(); } catch(e){}
   return false;
@@ -621,7 +889,7 @@ function openEditGameModal(gameId) {
   document.getElementById('edit-game-name').value = game.name;
   document.getElementById('edit-game-image').value = game.image.startsWith('data:image/svg+xml') ? '' : game.image;
   document.getElementById('edit-game-category').value = game.category;
-  document.getElementById('edit-game-price').value = game.price || 4000;
+  document.getElementById('edit-game-price').value = game.price || (game.category === 'Los más pedidos' ? 4000 : 3500);
   document.getElementById('edit-game-desc').value = game.description || '';
 
   const modal = document.getElementById('edit-game-modal');
@@ -648,7 +916,7 @@ function saveEditedGame(event) {
   const newName = document.getElementById('edit-game-name').value.trim();
   const newImage = document.getElementById('edit-game-image').value.trim();
   const newCat = document.getElementById('edit-game-category').value;
-  const newPrice = parseInt(document.getElementById('edit-game-price').value) || 4000;
+  const newPrice = parseInt(document.getElementById('edit-game-price').value) || (newCat === 'Los más pedidos' ? 4000 : 3500);
   const newDesc = document.getElementById('edit-game-desc').value.trim();
 
   game.name = newName || game.name;
@@ -660,6 +928,7 @@ function saveEditedGame(event) {
   saveCatalogToStorage();
   closeEditGameModal();
   renderCatalog();
+  renderSliderMasPedidos();
   showToast(`✏️ Juego "${game.name}" actualizado.`);
   try { playAddCartSound(); } catch(e){}
   return false;
@@ -680,6 +949,7 @@ function deleteGame(gameId) {
 
     saveCatalogToStorage();
     renderCatalog();
+    renderSliderMasPedidos();
     showToast(`🗑️ Juego "${game.name}" eliminado.`);
   }
 }
@@ -699,6 +969,7 @@ function resetCatalogToDefault() {
     saveCatalogToStorage();
     currentPage = 1;
     renderCatalog();
+    renderSliderMasPedidos();
     showToast("🔄 Catálogo restablecido a valores iniciales");
   }
 }
@@ -716,7 +987,7 @@ function addToCart(gameId) {
     cart.push({
       id: game.id,
       name: game.name,
-      price: game.price || 4000,
+      price: game.price || 3500,
       image: game.image,
       quantity: 1
     });
@@ -727,10 +998,22 @@ function addToCart(gameId) {
 }
 
 function updateCartBadge() {
-  const badge = document.getElementById('cart-count-badge');
   const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalSum = cart.reduce((acc, item) => acc + (item.price * item.quantity), 0);
+
+  const badge = document.getElementById('cart-count-badge');
   if (badge) {
     badge.textContent = totalItems;
+  }
+
+  const floatingCount = document.getElementById('floating-cart-count');
+  if (floatingCount) {
+    floatingCount.textContent = totalItems;
+  }
+
+  const floatingTotal = document.getElementById('floating-cart-total');
+  if (floatingTotal) {
+    floatingTotal.textContent = `$${totalSum.toLocaleString('es-AR')}`;
   }
 }
 
@@ -770,8 +1053,28 @@ function removeFromCart(gameId) {
 function renderCartModalContent() {
   const listContainer = document.getElementById('cart-items-list');
   const totalLabel = document.getElementById('cart-total-price');
+  const shippingFill = document.getElementById('shipping-progress-bar-fill');
+  const shippingText = document.getElementById('shipping-progress-text');
 
   if (!listContainer) return;
+
+  const totalQuantity = cart.reduce((acc, item) => acc + item.quantity, 0);
+  const progressPercent = Math.min(100, Math.round((totalQuantity / 5) * 100));
+
+  if (shippingFill) {
+    shippingFill.style.width = `${progressPercent}%`;
+  }
+
+  if (shippingText) {
+    if (totalQuantity === 0) {
+      shippingText.innerHTML = `🚚 Agrega 5 juegos para calificar para <strong>ENVÍO A DOMICILIO</strong> (0/5)`;
+    } else if (totalQuantity < 5) {
+      const remaining = 5 - totalQuantity;
+      shippingText.innerHTML = `🚚 Agrega <strong>${remaining} ${remaining === 1 ? 'juego más' : 'juegos más'}</strong> para calificar para <strong>ENVÍO A DOMICILIO</strong> (${totalQuantity}/5)`;
+    } else {
+      shippingText.innerHTML = `🎉 ¡Meta alcanzada! Tienes <strong>${totalQuantity} juegos</strong>. Calificas para <strong>ENVÍO A DOMICILIO</strong>.`;
+    }
+  }
 
   if (cart.length === 0) {
     listContainer.innerHTML = `
@@ -848,4 +1151,24 @@ document.addEventListener('DOMContentLoaded', () => {
   if (searchInput) {
     searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
   }
+
+  // Keyboard shortcut: Escape closes active modals
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      closeCartModal();
+      closeQuickviewModal();
+      closeAddGameModal();
+      closeEditGameModal();
+    }
+  });
+
+  // Close modals when clicking on background overlay
+  document.querySelectorAll('.modal-overlay').forEach(overlay => {
+    overlay.addEventListener('click', (e) => {
+      if (e.target === overlay) {
+        overlay.classList.remove('active');
+      }
+    });
+  });
 });
+
