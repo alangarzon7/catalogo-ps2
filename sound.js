@@ -48,6 +48,7 @@ function playClickSound() {
 
 function playHoverSound() {
   if (!isSoundOn()) return;
+  if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
   try {
     const osc = audioCtx.createOscillator();
     const gain = audioCtx.createGain();

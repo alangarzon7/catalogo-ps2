@@ -500,7 +500,7 @@ function renderCatalog() {
     return `
       <div class="game-card" onmouseenter="try{playHoverSound();}catch(e){}">
         <div class="card-image-wrapper" onclick="openQuickviewModal('${game.id}')" title="Ver detalles y carátula de ${game.name}">
-          <img src="${imgSrc}" alt="${game.name}" onerror="this.onerror=null; this.src='${getSVGPlaceholder(game.name)}';">
+          <img src="${imgSrc}" alt="${game.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${getSVGPlaceholder(game.name)}';">
           <button class="btn-card-fav ${isFav ? 'active' : ''}" onclick="toggleFavorite('${game.id}', event)" title="${isFav ? 'Quitar de favoritos' : 'Guardar en favoritos'}">
             ${isFav ? '❤️' : '🤍'}
           </button>
@@ -580,7 +580,7 @@ function renderSliderMasPedidos() {
     return `
       <div class="slider-card" onmouseenter="try{playHoverSound();}catch(e){}">
         <div class="slider-card-img-wrap" onclick="openQuickviewModal('${game.id}')" title="Ver detalles y carátula de ${game.name}">
-          <img src="${imgSrc}" alt="${game.name}" loading="lazy" onerror="this.onerror=null; this.src='${getSVGPlaceholder(game.name)}';">
+          <img src="${imgSrc}" alt="${game.name}" loading="lazy" decoding="async" onerror="this.onerror=null; this.src='${getSVGPlaceholder(game.name)}';">
           <span class="slider-card-tag">🔥 MÁS PEDIDOS</span>
           <button class="btn-card-fav ${isFav ? 'active' : ''}" onclick="toggleFavorite('${game.id}', event)" title="${isFav ? 'Quitar de favoritos' : 'Guardar en favoritos'}">
             ${isFav ? '❤️' : '🤍'}
@@ -1147,9 +1147,15 @@ function sendWhatsAppOrder() {
 document.addEventListener('DOMContentLoaded', () => {
   initData();
 
+  let searchDebounceTimer = null;
   const searchInput = document.getElementById('search-input');
   if (searchInput) {
-    searchInput.addEventListener('input', (e) => handleSearch(e.target.value));
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(searchDebounceTimer);
+      searchDebounceTimer = setTimeout(() => {
+        handleSearch(e.target.value);
+      }, 120);
+    });
   }
 
   // Keyboard shortcut: Escape closes active modals

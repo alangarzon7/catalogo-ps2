@@ -1,9 +1,8 @@
-/* PS2 Retro Gamer CSS Stylesheet - Optimized Legibility & Mobile UX */
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@600;700;800&family=Share+Tech+Mono&display=swap');
+/* PS2 Retro Gamer CSS Stylesheet - Optimized Performance & 60/120fps Mobile UX */
 
 :root {
   --bg-dark: #07090e;
-  --bg-card: rgba(18, 24, 40, 0.92);
+  --bg-card: rgba(18, 24, 40, 0.95);
   --bg-card-hover: rgba(28, 36, 60, 0.98);
   --cyan-glow: #00f0ff;
   --magenta-glow: #ff007f;
@@ -21,19 +20,25 @@
   --box-shadow-neon: 0 0 18px rgba(0, 240, 255, 0.35);
 }
 
-* {
+*, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
+}
+
+/* Eliminate 300ms tap delay and touch delay across all interactive elements */
+button, a, input, select, textarea, .slider-card, .game-card, .btn-card-fav {
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
 body {
   background-color: var(--bg-dark);
-  background-image: 
-    radial-gradient(circle at 15% 15%, rgba(139, 0, 255, 0.18) 0%, transparent 45%),
-    radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.15) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.85) 0%, rgba(7, 9, 14, 1) 100%);
-  background-attachment: fixed;
   color: var(--text-main);
   font-family: var(--font-body);
   font-size: 18px;
@@ -43,6 +48,22 @@ body {
   position: relative;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* GPU-Accelerated fixed canvas layer (prevents full-page repaints during mobile scrolling) */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(139, 0, 255, 0.18) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.15) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(0, 0, 0, 0.85) 0%, rgba(7, 9, 14, 1) 100%);
+  z-index: -1;
+  pointer-events: none;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
 /* Container */
@@ -388,7 +409,7 @@ body.admin-mode .card-quick-actions {
   margin-bottom: 35px;
 }
 
-/* Game Card Style */
+/* Game Card Style - Optimized GPU Layer & Content Visibility */
 .game-card {
   background: var(--bg-card);
   border: 1px solid rgba(0, 240, 255, 0.2);
@@ -396,16 +417,27 @@ body.admin-mode .card-quick-actions {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.22s ease, border-color 0.22s ease;
   position: relative;
-  backdrop-filter: blur(6px);
+  content-visibility: auto;
+  contain-intrinsic-size: 280px 450px;
+  transform: translateZ(0);
 }
 
-.game-card:hover {
-  transform: translateY(-7px) scale(1.02);
-  border-color: var(--cyan-glow);
-  box-shadow: 0 10px 30px rgba(0, 240, 255, 0.4);
-  background: var(--bg-card-hover);
+@media (hover: hover) {
+  .game-card:hover {
+    transform: translateY(-6px);
+    border-color: var(--cyan-glow);
+    box-shadow: 0 10px 28px rgba(0, 240, 255, 0.32);
+    background: var(--bg-card-hover);
+  }
+}
+
+@media (hover: none) {
+  .game-card:active {
+    transform: scale(0.98);
+    transition: transform 0.1s ease;
+  }
 }
 
 .card-image-wrapper {
@@ -422,11 +454,15 @@ body.admin-mode .card-quick-actions {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.4s ease;
+  transition: transform 0.35s ease;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
-.game-card:hover .card-image-wrapper img {
-  transform: scale(1.06);
+@media (hover: hover) {
+  .game-card:hover .card-image-wrapper img {
+    transform: scale(1.05);
+  }
 }
 
 /* Card Control Action Buttons Overlay (Admin Mode Only) */
@@ -1203,6 +1239,9 @@ footer {
   scrollbar-width: thin;
   scrollbar-color: rgba(0, 240, 255, 0.35) transparent;
   user-select: none;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pan-y;
 }
 
 .slider-track.dragging {
@@ -1240,14 +1279,25 @@ footer {
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  transition: all 0.25s ease;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.2s ease, box-shadow 0.2s ease;
   position: relative;
+  content-visibility: auto;
+  contain-intrinsic-size: 175px 330px;
+  transform: translateZ(0);
 }
 
-.slider-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--cyan-glow);
-  box-shadow: 0 8px 24px rgba(0, 240, 255, 0.35);
+@media (hover: hover) {
+  .slider-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--cyan-glow);
+    box-shadow: 0 8px 24px rgba(0, 240, 255, 0.35);
+  }
+}
+
+@media (hover: none) {
+  .slider-card:active {
+    transform: scale(0.97);
+  }
 }
 
 .slider-card-img-wrap {
@@ -1262,12 +1312,16 @@ footer {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
+  transform: translateZ(0);
+  will-change: transform;
   transition: transform 0.35s ease;
+  display: block;
 }
 
-.slider-card:hover .slider-card-img-wrap img {
-  transform: scale(1.06);
+@media (hover: hover) {
+  .slider-card:hover .slider-card-img-wrap img {
+    transform: scale(1.06);
+  }
 }
 
 /* Tag chip over image corner like in the reference image */
