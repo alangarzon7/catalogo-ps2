@@ -515,8 +515,10 @@ function renderCatalog() {
           <p class="game-desc">${game.description || 'Juego en formato DVD para consola Playstation 2.'}</p>
           <div class="card-footer">
             <span class="game-price">$${(game.price || 3500).toLocaleString('es-AR')}</span>
-            <button class="btn-add-quote" onclick="addToCart('${game.id}'); event.stopPropagation();">
-              🛒 Agregar al carrito
+            <button class="btn-add-quote" onclick="addToCart('${game.id}'); event.stopPropagation();" title="Agregar ${game.name} al carrito">
+              <span class="btn-cart-icon">🛒</span>
+              <span class="btn-text-full">Agregar al carrito</span>
+              <span class="btn-text-mobile">Agregar</span>
             </button>
           </div>
         </div>

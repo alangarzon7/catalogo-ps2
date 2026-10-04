@@ -594,6 +594,16 @@ body.admin-mode .card-quick-actions {
   display: inline-flex;
   align-items: center;
   gap: 5px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.btn-text-full {
+  display: inline;
+}
+
+.btn-text-mobile {
+  display: none;
 }
 
 .btn-add-quote:hover {
@@ -1076,6 +1086,33 @@ footer {
     gap: 12px;
   }
 
+  .btn-text-full {
+    display: none;
+  }
+
+  .btn-text-mobile {
+    display: inline;
+  }
+
+  .card-footer {
+    gap: 6px;
+    padding-top: 10px;
+  }
+
+  .game-price {
+    font-size: 1.1rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .btn-add-quote {
+    padding: 6px 10px;
+    font-size: 0.76rem;
+    white-space: nowrap;
+    flex-shrink: 0;
+    gap: 4px;
+  }
+
   .instructions-section {
     padding: 20px 16px;
   }
@@ -1119,13 +1156,23 @@ footer {
     display: none;
   }
 
+  .card-footer {
+    gap: 4px;
+    padding-top: 8px;
+  }
+
   .game-price {
-    font-size: 1.05rem;
+    font-size: 0.98rem;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 
   .btn-add-quote {
-    padding: 6px 8px;
-    font-size: 0.7rem;
+    padding: 5px 8px;
+    font-size: 0.72rem;
+    gap: 3px;
+    white-space: nowrap;
+    flex-shrink: 0;
   }
 }
 
@@ -1382,6 +1429,8 @@ footer {
   font-weight: 900;
   color: var(--green-glow);
   text-shadow: 0 0 8px rgba(0, 255, 136, 0.4);
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .slider-card-btn {
@@ -1396,6 +1445,10 @@ footer {
   cursor: pointer;
   transition: all 0.2s ease;
   white-space: nowrap;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
 }
 
 .slider-card-btn:hover {
@@ -1406,8 +1459,8 @@ footer {
 
 @media (max-width: 768px) {
   .slider-card {
-    flex: 0 0 150px;
-    width: 150px;
+    flex: 0 0 152px;
+    width: 152px;
   }
 
   .slider-card-img-wrap {
@@ -1417,29 +1470,81 @@ footer {
   .slider-title {
     font-size: 1.2rem;
   }
+
+  .slider-card-body {
+    padding: 8px 8px;
+    gap: 6px;
+  }
+
+  .slider-card-footer {
+    gap: 4px;
+    padding-top: 6px;
+  }
+
+  .slider-card-price {
+    font-size: 0.9rem;
+  }
+
+  .slider-card-btn {
+    font-size: 0.74rem;
+    padding: 3px 6px;
+  }
 }
 
 @media (max-width: 480px) {
   .slider-card {
-    flex: 0 0 135px;
-    width: 135px;
+    flex: 0 0 148px;
+    width: 148px;
   }
 
   .slider-card-img-wrap {
-    height: 180px;
+    height: 185px;
+  }
+
+  .slider-card-body {
+    padding: 8px 8px;
+    gap: 6px;
   }
 
   .slider-card-title {
-    font-size: 0.85rem;
+    font-size: 0.84rem;
+    height: 2.3em;
+  }
+
+  .slider-card-footer {
+    gap: 4px;
+    padding-top: 6px;
+    align-items: center;
   }
 
   .slider-card-price {
-    font-size: 0.88rem;
+    font-size: 0.86rem;
   }
 
   .slider-card-btn {
-    font-size: 0.75rem;
+    font-size: 0.72rem;
     padding: 3px 6px;
+    gap: 2px;
+  }
+}
+
+@media (max-width: 360px) {
+  .slider-card {
+    flex: 0 0 140px;
+    width: 140px;
+  }
+
+  .slider-card-body {
+    padding: 6px 6px;
+  }
+
+  .slider-card-price {
+    font-size: 0.82rem;
+  }
+
+  .slider-card-btn {
+    font-size: 0.68rem;
+    padding: 3px 5px;
   }
 }
 
